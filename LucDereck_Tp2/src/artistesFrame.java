@@ -83,28 +83,31 @@ public class artistesFrame extends JFrame {
 	}
 	private JTable getArtistesTable() {
 		if (artistesTable == null) {
-			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\member.png");
-			TableModele model = new TableModele();
+			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\member.gif");
 			artistesTable = new JTable();
 			artistesTable.setColumnSelectionAllowed(true);
 			artistesTable.setCellSelectionEnabled(true);
-			artistesTable.setModel(new DefaultTableModel(
-				new Object[][] {
-					{"1", "C\u00E9line Dion", new TableRenderer()},
-					{"2", "Aub\u00E9 Johanne", null},
-					{"3", "Andr\u00E9e France", membre},
-				},
-				new String[] {
-					"Num\u00E9ro", "Nom", "Icon"
+			Object[][] data = {	
+					{"1","Test1", membre},
+					{"2","Test2"},
+					{"3","Test3", membre}			
+			}; 
+			
+			String[] columnNames = {"Numero", "Nom", "Membre"};
+			
+			
+			artistesTable.setModel(new DefaultTableModel(data, columnNames) {
+				
+				public Class getColumnClass(int column)
+				{
+					return getValueAt(2,column).getClass();
 				}
-			) {
-				Class[] columnTypes = new Class[] {
-					String.class, String.class, Object.class
-				};
-				public Class getColumnClass(int columnIndex) {
-					return columnTypes[columnIndex];
-				}
-			});
+				
+				
+				
+			}
+					);
+			
 			artistesTable.getColumnModel().getColumn(0).setResizable(false);
 			artistesTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			artistesTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -233,7 +236,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\album2.jpg"));
+			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\coeurDePirate.jpg"));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;
