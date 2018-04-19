@@ -2,11 +2,11 @@
 public class Artistes {
 	private int numero;
 	private String nom;
-	private int membre;
+	private boolean membre;
 	private String photo;
 	
 	
-	public Artistes(int numero, String nom, int membre, String photo) {
+	public Artistes(int numero, String nom, boolean membre, String photo) {
 		super();
 		this.numero = numero;
 		this.nom = nom;
@@ -35,12 +35,12 @@ public class Artistes {
 	}
 
 
-	public int getMembre() {
+	public boolean getMembre() {
 		return membre;
 	}
 
 
-	public void setMembre(int membre) {
+	public void setMembre(boolean membre) {
 		this.membre = membre;
 	}
 
