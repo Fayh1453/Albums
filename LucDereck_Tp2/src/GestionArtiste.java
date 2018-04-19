@@ -38,18 +38,19 @@ public class GestionArtiste {
 					liste.add(new Artistes(Integer.parseInt(numero), nom, (membre.equals("1")), photo));	
 			}
 			
-			/*
+			
 			for(Artistes art : liste) {
 				System.out.println( art.getNumero()+ "   "+ art.getNom()  + " " +art.getMembre() + " " + art.getPhoto());	
-			}*/
+			}
 			
 		}catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E8 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+
 		return liste;
 	}
+	
+	
 
 
 }

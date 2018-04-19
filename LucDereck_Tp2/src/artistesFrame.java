@@ -87,14 +87,27 @@ public class artistesFrame extends JFrame {
 			artistesTable = new JTable();
 			artistesTable.setColumnSelectionAllowed(true);
 			artistesTable.setCellSelectionEnabled(true);
-			Object[][] data = {	
-					{"1","Test1", membre},
-					{"2","Test2"},
-					{"3","Test3", membre}			
-			}; 
+
+			Object[][] data ={	
+					{"1","Céline Dion", membre},
+					{"2","Patrick Norman"},
+					{"3","Martin Stevens", membre},	
+					{"4","Coeur de Pirate"},
+					{"4","Elvis Presley"}
+			};
 			
-			String[] columnNames = {"Numero", "Nom", "Membre"};
 			
+				/*for (Artistes art: liste.getListeArtistes()) {
+					
+					data[0][number]=art.getNumero();
+					data[1][number]=art.getNom();
+					if (art.getMembre())
+					{data[2][number]=art.getMembre();}
+					
+					number++;
+				};*/
+			
+			String[] columnNames = {"Num\u00E9ro", "Nom", "Membre"};
 			
 			artistesTable.setModel(new DefaultTableModel(data, columnNames) {
 				
@@ -236,7 +249,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\coeurDePirate.jpg"));
+			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\martinStevens.jpg"));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;
