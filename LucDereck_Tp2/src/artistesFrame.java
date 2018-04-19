@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Vector;
 
@@ -19,11 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class artistesFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable artistesTable;
 	private JPanel panelListeAlbums;
@@ -79,14 +83,16 @@ public class artistesFrame extends JFrame {
 	}
 	private JTable getArtistesTable() {
 		if (artistesTable == null) {
+			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\member.png");
+			TableModele model = new TableModele();
 			artistesTable = new JTable();
 			artistesTable.setColumnSelectionAllowed(true);
 			artistesTable.setCellSelectionEnabled(true);
 			artistesTable.setModel(new DefaultTableModel(
 				new Object[][] {
-					{"1", "C\u00E9line Dion", "Icone Oui"},
+					{"1", "C\u00E9line Dion", new TableRenderer()},
 					{"2", "Aub\u00E9 Johanne", null},
-					{"3", "Andr\u00E9e France", "Icone Oui"},
+					{"3", "Andr\u00E9e France", membre},
 				},
 				new String[] {
 					"Num\u00E9ro", "Nom", "Icon"
