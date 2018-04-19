@@ -9,6 +9,8 @@ import java.sql.Statement;
 public class ControleConnexion {
 
 	private static Connection laConnexion;
+
+
 	private static String url = "jdbc:mysql://localhost/LucDereck_Albums";
 	
 	public static void main(String[] args) {
@@ -40,24 +42,21 @@ public class ControleConnexion {
 			
 			laConnexion = DriverManager.getConnection(url,"root","123");
 			System.out.println("Connecté à la BD \n\n\n");
+			
+			GestionArtiste gestionArtistes = new GestionArtiste();
 
-			String requete = "Select * from Artistes";
-			statement = laConnexion.createStatement();
-
-			declarationParametree= laConnexion.prepareStatement(requete);
-
-			jeuResultats=declarationParametree.executeQuery();
-
-			System.out.println("Voici les artistes");
-			while (jeuResultats.next()){				
-				String numero = jeuResultats.getString("numero");
-				String nom = jeuResultats.getString("nom");							
-				System.out.println( numero+ "   "+  nom );			
-			}
 			
 		} catch (SQLException sqle) {
 			System.out.println("ERREUR: " + sqle);
 		}
+	}
+	
+	public static Connection getLaConnexion() {
+		return laConnexion;
+	}
+
+	public static void setLaConnexion(Connection laConnexion) {
+		ControleConnexion.laConnexion = laConnexion;
 	}
 }
 
