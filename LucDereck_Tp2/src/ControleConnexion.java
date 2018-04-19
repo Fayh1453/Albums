@@ -44,6 +44,9 @@ public class ControleConnexion {
 			System.out.println("Connecté à la BD \n\n\n");
 			
 			GestionArtiste gestionArtistes = new GestionArtiste();
+			Artistes art = new Artistes(12,"Luc",false,"testLuc.jpg");
+			
+			gestionArtistes.supprimerArtistesBD(art);
 
 			
 		} catch (SQLException sqle) {
