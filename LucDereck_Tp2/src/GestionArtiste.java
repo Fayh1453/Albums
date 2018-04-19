@@ -82,7 +82,7 @@ public class GestionArtiste {
 	public boolean supprimerArtistesBD(Artistes artiste) {
 		boolean boolSupp = false;
 
-		String requete = "DELETE FROM `Artistes` WHERE numero = " + artiste.getNumero(); 
+		String requete = "DELETE FROM `Artistes` WHERE numero = 99"; 
 		
 		try {
 			
