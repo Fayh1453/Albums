@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Vector;
 
@@ -19,11 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 public class artistesFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable artistesTable;
 	private JPanel panelListeAlbums;
@@ -79,26 +83,44 @@ public class artistesFrame extends JFrame {
 	}
 	private JTable getArtistesTable() {
 		if (artistesTable == null) {
+			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\member.gif");
 			artistesTable = new JTable();
 			artistesTable.setColumnSelectionAllowed(true);
 			artistesTable.setCellSelectionEnabled(true);
-			artistesTable.setModel(new DefaultTableModel(
-				new Object[][] {
-					{"1", "C\u00E9line Dion", "Icone Oui"},
-					{"2", "Aub\u00E9 Johanne", null},
-					{"3", "Andr\u00E9e France", "Icone Oui"},
-				},
-				new String[] {
-					"Num\u00E9ro", "Nom", "Icon"
+
+			Object[][] data ={	
+					{"1","Céline Dion", membre},
+					{"2","Patrick Norman"},
+					{"3","Martin Stevens", membre},	
+					{"4","Coeur de Pirate"},
+					{"4","Elvis Presley"}
+			};
+			
+			
+				/*for (Artistes art: liste.getListeArtistes()) {
+					
+					data[0][number]=art.getNumero();
+					data[1][number]=art.getNom();
+					if (art.getMembre())
+					{data[2][number]=art.getMembre();}
+					
+					number++;
+				};*/
+			
+			String[] columnNames = {"Num\u00E9ro", "Nom", "Membre"};
+			
+			artistesTable.setModel(new DefaultTableModel(data, columnNames) {
+				
+				public Class getColumnClass(int column)
+				{
+					return getValueAt(2,column).getClass();
 				}
-			) {
-				Class[] columnTypes = new Class[] {
-					String.class, String.class, Object.class
-				};
-				public Class getColumnClass(int columnIndex) {
-					return columnTypes[columnIndex];
-				}
-			});
+				
+				
+				
+			}
+					);
+			
 			artistesTable.getColumnModel().getColumn(0).setResizable(false);
 			artistesTable.getColumnModel().getColumn(0).setPreferredWidth(50);
 			artistesTable.getColumnModel().getColumn(0).setMinWidth(50);
@@ -227,7 +249,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\album2.jpg"));
+			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\martinStevens.jpg"));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;

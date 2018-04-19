@@ -46,8 +46,7 @@ public class GestionArtiste {
 		}catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E8 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
+
 		return liste;
 	}
 	
