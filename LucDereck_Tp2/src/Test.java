@@ -4,11 +4,11 @@ public class Test {
 
 	public static void main(String[] args) {
 		ControleConnexion.connecter();
-		artistesFrame artistes = new artistesFrame();
+		Identification identification = new Identification();
 		
-		artistes.setLocationRelativeTo(null);
-		artistes.setVisible(true);
-		artistes.setResizable(false);
+		identification.setLocationRelativeTo(null);
+		identification.setVisible(true);
+		identification.setResizable(false);
 
 
 	}
