@@ -9,8 +9,6 @@ public class Test {
 		identification.setLocationRelativeTo(null);
 		identification.setVisible(true);
 		identification.setResizable(false);
-
-
 	}
 
 }
