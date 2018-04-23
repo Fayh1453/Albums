@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -39,14 +41,14 @@ public class artistesFrame extends JFrame {
 	private JCheckBox checkBox;
 	private JButton button;
 	private JButton button_1;
-	private JButton button_2;
+	private JButton btnQuitter;
 	private JButton button_3;
 	private JButton button_4;
 	private JPanel panelButtons;
 	private JLabel lblImageAlbum;
 	private JList list;
 	private JScrollPane scrollPane;
-
+	
 	
 	/**
 	 * Launch the application.
@@ -55,8 +57,6 @@ public class artistesFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
-					
 					artistesFrame frame = new artistesFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -70,7 +70,7 @@ public class artistesFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public artistesFrame() {
-		setTitle("Gestion des artites, Ajout, Modification, Suppression, Recherche");
+		setTitle("Gestion des artistes, Ajout, Modification, Suppression, Recherche");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 679, 479);
 		contentPane = new JPanel();
@@ -83,7 +83,7 @@ public class artistesFrame extends JFrame {
 	}
 	private JTable getArtistesTable() {
 		if (artistesTable == null) {
-			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\member.gif");
+			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\Images\\member.gif");
 			artistesTable = new JTable();
 			artistesTable.setColumnSelectionAllowed(true);
 			artistesTable.setCellSelectionEnabled(true);
@@ -184,7 +184,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblMembre() {
 		if (lblMembre == null) {
 			lblMembre = new JLabel("Membre");
-			lblMembre.setBounds(25, 141, 46, 14);
+			lblMembre.setBounds(25, 141, 63, 14);
 		}
 		return lblMembre;
 	}
@@ -210,12 +210,22 @@ public class artistesFrame extends JFrame {
 		}
 		return button_1;
 	}
-	private JButton getButton_2() {
-		if (button_2 == null) {
-			button_2 = new JButton("Quitter");
-			button_2.setBounds(48, 298, 132, 23);
+	private JButton getBtnQuitter() {
+		if (btnQuitter == null) {
+			btnQuitter = new JButton("Quitter");
+			btnQuitter.setBounds(48, 298, 132, 23);
+			btnQuitter.addActionListener(new ActionListener() {
+
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+	
+					dispose();
+				}
+			    
+			});
 		}
-		return button_2;
+		return btnQuitter;
 	}
 	private JButton getButton_3() {
 		if (button_3 == null) {
@@ -240,7 +250,7 @@ public class artistesFrame extends JFrame {
 			panelButtons.setLayout(null);
 			panelButtons.add(getButton());
 			panelButtons.add(getButton_1());
-			panelButtons.add(getButton_2());
+			panelButtons.add(getBtnQuitter());
 			panelButtons.add(getButton_3());
 			panelButtons.add(getButton_4());
 		}
@@ -249,7 +259,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\martinStevens.jpg"));
+			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\Images\\martinStevens.jpg"));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;
