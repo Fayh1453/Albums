@@ -12,7 +12,7 @@ public class Albums {
 	
 	public Albums(int numero, String titre, double prix, String genre, int annee, String maison, String image,
 			int numeroArtiste) {
-		super();
+		super(); 
 		this.numero = numero;
 		this.titre = titre;
 		this.prix = prix;
