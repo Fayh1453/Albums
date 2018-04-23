@@ -71,7 +71,7 @@ public class GestionArtiste {
 			boolAjout = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E8 lors de l'enregistrement de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de l'enregistrement de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		
@@ -90,11 +90,39 @@ public class GestionArtiste {
 			boolSupp = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E8 lors de la suppression de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de la suppression de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		
 		return boolSupp;	
+	}
+	
+	public boolean modifierArtistesBD(Artistes artiste) {
+		boolean boolModif = false;
+		
+		int intMembre=0;
+		
+		if (artiste.getMembre()) {
+			intMembre=1;
+		}
+				
+		String requete = "UPDATE Artistes SET nom='" + artiste.getNom() 
+						+ "',Membre=" + intMembre 
+						+ ",photo='" + artiste.getPhoto()
+						+"' WHERE numero=" + artiste.getNumero();
+		
+		try {
+			
+			Statement statement = connexion.createStatement();
+			statement.executeUpdate(requete);
+			boolModif = true;
+			
+		} catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de la modification de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+
+		
+		return boolModif;	
 	}
 
 
