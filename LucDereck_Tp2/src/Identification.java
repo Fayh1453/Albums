@@ -52,7 +52,7 @@ public class Identification extends JFrame {
 	 * Create the frame.
 	 */
 	public Identification() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\Images\\connexionIcon.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Identification.class.getResource("/Images/connexionIcon.png")));
 		setTitle("Gestion des albums");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 455, 317);
@@ -92,7 +92,7 @@ public class Identification extends JFrame {
 		if (lblConnexionAuProgramme == null) {
 			lblConnexionAuProgramme = new JLabel("Connexion au programme");
 			lblConnexionAuProgramme.setFont(new Font("Times New Roman", Font.BOLD, 20));
-			lblConnexionAuProgramme.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\connexion.png"));
+			lblConnexionAuProgramme.setIcon(new ImageIcon(Identification.class.getResource("/Images/connexion.png")));
 			lblConnexionAuProgramme.setBounds(39, 11, 311, 60);
 		}
 		return lblConnexionAuProgramme;
@@ -131,6 +131,9 @@ public class Identification extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					ControleConnexion.connecter();
+					
+					
 					ChoixDesTraitements choix = new ChoixDesTraitements();
 					choix.setLocationRelativeTo(null);
 					choix.setVisible(true);

@@ -63,7 +63,7 @@ public class AlbumsFrame extends JFrame {
 	 */
 	public AlbumsFrame() {
 		setTitle("Gestion des albums, Ajout, Modification, Suppression, Recherche");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 641, 406);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -138,7 +138,7 @@ public class AlbumsFrame extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("New label");
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\tooMuchTooLate.png"));
+			lblNewLabel.setIcon(new ImageIcon(AlbumsFrame.class.getResource("/Images/tooMuchTooLate.png")));
 			lblNewLabel.setBounds(247, 64, 90, 90);
 		}
 		return lblNewLabel;

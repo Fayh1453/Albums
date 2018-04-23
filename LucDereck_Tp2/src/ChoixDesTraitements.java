@@ -43,7 +43,7 @@ public class ChoixDesTraitements extends JFrame {
 	 */
 	public ChoixDesTraitements() {
 		setTitle("Choix des traitements");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 308, 336);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

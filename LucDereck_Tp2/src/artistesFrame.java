@@ -59,6 +59,7 @@ public class artistesFrame extends JFrame {
 				try {
 					artistesFrame frame = new artistesFrame();
 					frame.setVisible(true);
+					GestionArtiste gestion = new GestionArtiste(); 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,7 +72,7 @@ public class artistesFrame extends JFrame {
 	 */
 	public artistesFrame() {
 		setTitle("Gestion des artistes, Ajout, Modification, Suppression, Recherche");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 679, 479);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -259,7 +260,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\Images\\martinStevens.jpg"));
+			lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/coeurDePirate.jpg")));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;
