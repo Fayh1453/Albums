@@ -44,7 +44,7 @@ public class GestionArtiste {
 			}
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E8 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return liste;
@@ -71,7 +71,7 @@ public class GestionArtiste {
 			boolAjout = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de l'enregistrement de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'enregistrement de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		
@@ -81,7 +81,7 @@ public class GestionArtiste {
 	public boolean supprimerArtistesBD(Artistes artiste) {
 		boolean boolSupp = false;
 
-		String requete = "DELETE FROM `Artistes` WHERE numero = 99"; 
+		String requete = "DELETE FROM `Artistes` WHERE numero=" + artiste.getNumero(); 
 		
 		try {
 			
@@ -90,7 +90,7 @@ public class GestionArtiste {
 			boolSupp = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de la suppression de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la suppression de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		
@@ -118,7 +118,7 @@ public class GestionArtiste {
 			boolModif = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E8 lors de la modification de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		

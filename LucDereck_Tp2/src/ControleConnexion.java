@@ -41,12 +41,24 @@ public class ControleConnexion {
 		try {
 			
 			laConnexion = DriverManager.getConnection(url,"root","123");
-			System.out.println("Connecté à la BD \n\n\n");
+			System.out.println("Connect\u00E9 à la BD \n\n\n");
 			
-			GestionArtiste gestionArtistes = new GestionArtiste();
 		
-			/*Artistes art = new Artistes(6,"d",true,"tessdfdfsduc.jpg");
-			gestionArtistes.modifierArtistesBD(art);*/
+			GestionArtiste gestionArtistes = new GestionArtiste();
+			
+			Artistes art = new Artistes(6,"d",true,"tessdfdfsduc.jpg");
+			gestionArtistes.supprimerArtistesBD(art);
+			
+			
+			System.out.println("\n\n");
+			
+			
+			GestionAlbums gestionAlbums = new GestionAlbums();
+			
+			Albums alb = new Albums(8,"test",1333.44,"WEE",1992,"YJJ","test.pgn",3);
+			gestionAlbums.modifierAlbumsBD(alb);
+		
+
 
 			
 		} catch (SQLException sqle) {
