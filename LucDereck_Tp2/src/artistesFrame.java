@@ -81,6 +81,8 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getPanelListeAlbums());
 		contentPane.add(getPanel_2());
 		btnConfirmer.setVisible(false);
+		textField_2.setVisible(false);
+		btnImage.setVisible(false);
 	}
 	private JTable getArtistesTable() {
 	
@@ -97,6 +99,8 @@ public class artistesFrame extends JFrame {
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
 					public void mouseReleased(MouseEvent e) {
+						textField_2.setVisible(false);
+						btnImage.setVisible(false);
 						int numLigne;
 						numLigne = artistesTable.getSelectedRow();
 						Artistes artiste = modeleArtistes.getElement(numLigne);
@@ -303,7 +307,24 @@ public class artistesFrame extends JFrame {
 	private void ajouter() {
 		
 		effacerInfos();
+		
+		textField_2.setVisible(true);
+		btnImage.setVisible(true);
+		btnImage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ajouterImage();
+			}
+		});
+		
+		
 		btnConfirmer.setVisible(true);
+		btnConfirmer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				confirmerAjout();
+			}
+		});
 	}
 	
 	private void effacerInfos() {
@@ -316,6 +337,16 @@ public class artistesFrame extends JFrame {
 		checkBox.setSelected(false);
 		list.setVisible(false);
 		
+	}
+	
+	private void confirmerAjout() {
+		///////////////////
+	}
+	
+	private void ajouterImage() {
+		//////////////////////
+		String chemin = GestionFichier.Ouvrir(this);
+		textField_2.setText(chemin);
 	}
 	
 
