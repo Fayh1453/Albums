@@ -52,6 +52,8 @@ public class AlbumsFrame extends JFrame {
 	private ModeleAlbums modeleAlbum;
 	private GestionAlbums gestionAlbums;
 	private Albums album;
+	private JButton btnImage;
+	private JButton btnConfirmer;
 
 
 	/**
@@ -104,6 +106,8 @@ public class AlbumsFrame extends JFrame {
 			panel_1.add(getTextField_3());
 			panel_1.add(getTextField_4());
 			panel_1.add(getTextField_5());
+			panel_1.add(getBtnImage());
+			panel_1.add(getBtnConfirmer());
 		}
 		return panel_1;
 	}
@@ -358,4 +362,18 @@ public class AlbumsFrame extends JFrame {
 		return btnQuitter;
 	}
 
+	private JButton getBtnImage() {
+		if (btnImage == null) {
+			btnImage = new JButton("Image");
+			btnImage.setBounds(247, 167, 89, 23);
+		}
+		return btnImage;
+	}
+	private JButton getBtnConfirmer() {
+		if (btnConfirmer == null) {
+			btnConfirmer = new JButton("Confirmer");
+			btnConfirmer.setBounds(247, 197, 89, 23);
+		}
+		return btnConfirmer;
+	}
 }

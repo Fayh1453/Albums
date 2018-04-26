@@ -127,8 +127,8 @@ public class GestionArtiste {
 					System.out.println(art.getNom());
 				}
 			}
+			listeArtistes = obtenirListeArtistes();
 			///////
-			
 			boolModif = true;
 			
 		} catch (SQLException sqle) {

@@ -25,6 +25,7 @@ public class ChoixDesTraitements extends JFrame {
 	private JButton btnAlbums;
 	private JButton btnQuitter;
 	private JLabel lblChoixDesTraitements;
+	private JButton btnAide;
 
 	/**
 	 * Launch the application.
@@ -68,6 +69,7 @@ public class ChoixDesTraitements extends JFrame {
 			panel.add(getBtnAlbums());
 			panel.add(getBtnQuitter());
 			panel.add(getLblChoixDesTraitements());
+			panel.add(getBtnAide());
 		}
 		return panel;
 	}
@@ -148,5 +150,12 @@ public class ChoixDesTraitements extends JFrame {
 			lblChoixDesTraitements.setBounds(10, 41, 239, 35);
 		}
 		return lblChoixDesTraitements;
+	}
+	private JButton getBtnAide() {
+		if (btnAide == null) {
+			btnAide = new JButton("Aide");
+			btnAide.setBounds(84, 230, 89, 23);
+		}
+		return btnAide;
 	}
 }
