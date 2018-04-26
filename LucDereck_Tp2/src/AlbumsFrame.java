@@ -68,6 +68,8 @@ public class AlbumsFrame extends JFrame {
 		contentPane.add(getPanel());
 		contentPane.add(getPanel_1());
 		contentPane.add(getScrollPane());
+		btnModifier.setEnabled(false);
+		btnSupprimer.setEnabled(false);
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -130,6 +132,10 @@ public class AlbumsFrame extends JFrame {
 			
 			tableAlbums.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
+					textField.setEditable(false);
+					btnModifier.setEnabled(true);
+					btnSupprimer.setEnabled(true);
+					
 					int numLigne;
 					numLigne = tableAlbums.getSelectedRow();
 					album = modeleAlbum.getElement(numLigne);
@@ -170,7 +176,8 @@ public class AlbumsFrame extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("New label");
-			lblNewLabel.setIcon(new ImageIcon(AlbumsFrame.class.getResource("/Images/tooMuchTooLate.png")));
+			lblNewLabel.setIcon(null);
+			lblNewLabel.setText("");
 			lblNewLabel.setBounds(247, 64, 90, 90);
 		}
 		return lblNewLabel;
@@ -269,9 +276,61 @@ public class AlbumsFrame extends JFrame {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Ajouter");
 			btnNewButton.setBounds(54, 53, 113, 23);
+			
+			btnNewButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouter();
+				}
+				
+			});
 		}
 		return btnNewButton;
 	}
+	
+	private void ajouter() {
+		
+		effacerInfos();
+		
+		textField.setEditable(true);	
+		btnModifier.setEnabled(false);
+		btnSupprimer.setEnabled(false);
+	/*	btnImage.setVisible(true);
+		btnImage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ajouterImage();
+			}
+		});
+		
+		
+		btnConfirmer.setVisible(true);
+		btnConfirmer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				confirmerAjout();
+			}
+		});*/
+	}
+	
+	private void effacerInfos() {
+		
+		tableAlbums.clearSelection();
+		textField.setText("");
+		textField_1.setText("");
+		textField_2.setText("");
+		textField_3.setText("");
+		textField_4.setText("");
+		textField_5.setText("");
+		lblNewLabel.setIcon(null);
+		lblNewLabel.setText("Choisir une image");
+	/*	lblImageAlbum.setIcon(null);
+		lblImageAlbum.setText("Choisir une image");	
+		checkBox.setSelected(false);
+		list.setVisible(false);*/
+		
+	}
+	
 	private JButton getBtnModifier() {
 		if (btnModifier == null) {
 			btnModifier = new JButton("Modifier");

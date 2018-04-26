@@ -84,11 +84,13 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getPanel_2());
 		btnConfirmer.setVisible(false);
 		btnImage.setVisible(false);
+		button_3.setEnabled(false);
+		button_1.setEnabled(false);
 	}
 	public JTable setArtistesTable(ArrayList<Artistes> liste) {
 		
-
 		modeleArtistes = new ModeleArtistes(liste);
+		
 		artistesTable.setModel(modeleArtistes);
 		artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 		
@@ -114,6 +116,9 @@ public class artistesFrame extends JFrame {
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
 					public void mouseReleased(MouseEvent e) {
+						button_3.setEnabled(true);
+						button_1.setEnabled(true);
+						textField.setEditable(false);
 						btnImage.setVisible(false);
 						int numLigne;
 						numLigne = artistesTable.getSelectedRow();
@@ -356,6 +361,9 @@ public class artistesFrame extends JFrame {
 		
 		effacerInfos();
 		
+		textField.setEditable(true);	
+		button_3.setEnabled(false);
+		button_1.setEnabled(false);
 		btnImage.setVisible(true);
 		btnImage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -388,7 +396,7 @@ public class artistesFrame extends JFrame {
 	
 	private void modifier() {
 		btnConfirmer.setVisible(true);
-		
+		textField.setEditable(false);
 		btnImage.setVisible(true);
 		btnImage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -461,6 +469,7 @@ public class artistesFrame extends JFrame {
 		
 		gestionArtiste.modifierArtistesBD(artiste);
 		setArtistesTable(gestionArtiste.getListeArtistes());
+
 		
 	}
 	
