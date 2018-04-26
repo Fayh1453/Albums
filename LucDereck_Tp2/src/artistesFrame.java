@@ -265,7 +265,7 @@ public class artistesFrame extends JFrame {
 			button_4.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					ajoutArtiste();
+					
 				}
 				
 			});
@@ -274,11 +274,7 @@ public class artistesFrame extends JFrame {
 		return button_4;
 	}
 	
-	private void ajoutArtiste() {
-		JButton ajoutButton = new JButton("Ajouter");
-		panelListeAlbums.add(ajoutButton);
-	}
-	
+
 	private JPanel getPanel_2() {
 		if (panelButtons == null) {
 			panelButtons = new JPanel();

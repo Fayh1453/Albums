@@ -86,9 +86,9 @@ public class ChoixDesTraitements extends JFrame {
 	
 					
 					
-					//artistes.setLocationRelativeTo(null);
-					//artistes.setVisible(true);
-					//artistes.setResizable(false);
+					artistes.setLocationRelativeTo(null);
+					artistes.setVisible(true);
+					artistes.setResizable(false);
 					
 				}
 			    
