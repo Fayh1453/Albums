@@ -152,7 +152,9 @@ public class Identification extends JFrame {
 						choix.setLocationRelativeTo(null);
 						choix.setVisible(true);
 						choix.setResizable(false);
+
 						dispose();
+
 					}
 
 
@@ -161,6 +163,11 @@ public class Identification extends JFrame {
 			});
 		}
 		return btnValider;
+	}
+	
+	private void close() {
+		setVisible(false);
+		dispose();
 	}
 
 	private JButton getBtnQuitter() {

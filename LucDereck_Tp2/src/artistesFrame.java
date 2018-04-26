@@ -80,6 +80,7 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getScrollPane());
 		contentPane.add(getPanelListeAlbums());
 		contentPane.add(getPanel_2());
+		btnConfirmer.setVisible(false);
 	}
 	private JTable getArtistesTable() {
 	
@@ -90,6 +91,9 @@ public class artistesFrame extends JFrame {
 				GestionArtiste gestionArtiste = new GestionArtiste();
 				ModeleArtistes modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
 				artistesTable.setModel(modeleArtistes);
+				artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
+				
+				
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
 					public void mouseReleased(MouseEvent e) {
@@ -97,12 +101,15 @@ public class artistesFrame extends JFrame {
 						numLigne = artistesTable.getSelectedRow();
 						Artistes artiste = modeleArtistes.getElement(numLigne);
 
-				artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
-				artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
+						artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+						
+						btnConfirmer.setVisible(false);
+				
 
 						
 						textField.setText(String.valueOf(artiste.getNumero()));
 						textField_1.setText(String.valueOf(artiste.getNom()));
+						artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 						
 						if (artiste.getMembre()) {
 							checkBox.setSelected(true);
@@ -117,7 +124,7 @@ public class artistesFrame extends JFrame {
 							lblImageAlbum.setText("Image non disponible");
 						}	
 						
-						
+						list.setVisible(true);
 						list.setModel(gestionArtiste.getListeAlbum(artiste.getNumero()));
 					}
 
@@ -276,12 +283,42 @@ public class artistesFrame extends JFrame {
 		return button_3;
 	}
 	private JButton getButton_4() {
+		
 		if (button_4 == null) {
 			button_4 = new JButton("Ajouter");
 			button_4.setBounds(48, 54, 132, 23);
+			
+			button_4.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouter();
+				}
+				
+			});
 		}
+			
 		return button_4;
 	}
+	
+	private void ajouter() {
+		
+		effacerInfos();
+		btnConfirmer.setVisible(true);
+	}
+	
+	private void effacerInfos() {
+		
+		artistesTable.clearSelection();
+		textField.setText("");
+		textField_1.setText("");
+		lblImageAlbum.setIcon(null);
+		lblImageAlbum.setText("Ajouter");	
+		checkBox.setSelected(false);
+		list.setVisible(false);
+		
+	}
+	
+
 	private JPanel getPanel_2() {
 		if (panelButtons == null) {
 			panelButtons = new JPanel();
