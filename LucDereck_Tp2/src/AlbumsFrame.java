@@ -48,6 +48,8 @@ public class AlbumsFrame extends JFrame {
 	private JButton btnSupprimer;
 	private JButton btnRechercher;
 	private JButton btnQuitter;
+	private ModeleAlbums modeleAlbum;
+	private GestionAlbums gestionAlbums;
 
 
 	/**
@@ -104,8 +106,8 @@ public class AlbumsFrame extends JFrame {
 		return panel_1;
 	}
 	public JTable setAlbumsTable(ArrayList<Albums> liste) {
-		ModeleAlbums modeleAlbums = new ModeleAlbums(liste);
-		tableAlbums.setModel(modeleAlbums);
+		modeleAlbum = new ModeleAlbums(liste);
+		tableAlbums.setModel(modeleAlbum);
 
 		
 		
@@ -118,8 +120,8 @@ public class AlbumsFrame extends JFrame {
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
-			GestionAlbums gestionAlbums = new GestionAlbums();
-			ModeleAlbums modeleAlbum= new ModeleAlbums(gestionAlbums.getListeAlbums());
+			gestionAlbums = new GestionAlbums();
+			modeleAlbum = new ModeleAlbums(gestionAlbums.getListeAlbums());
 			tableAlbums.setModel(modeleAlbum);
 			
 			tableAlbums.addMouseListener(new MouseAdapter() {

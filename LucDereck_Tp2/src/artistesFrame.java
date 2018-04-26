@@ -87,7 +87,7 @@ public class artistesFrame extends JFrame {
 	}
 	public JTable setArtistesTable(ArrayList<Artistes> liste) {
 		
-		ModeleArtistes modeleArtistes= new ModeleArtistes(liste);
+		modeleArtistes= new ModeleArtistes(liste);
 		artistesTable.setModel(modeleArtistes);
 		artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 		
