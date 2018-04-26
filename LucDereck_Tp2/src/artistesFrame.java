@@ -237,8 +237,13 @@ public class artistesFrame extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-	
 					dispose();
+					
+
+					ChoixDesTraitements choix = new ChoixDesTraitements();
+					choix.setLocationRelativeTo(null);
+					choix.setVisible(true);
+					choix.setResizable(false);
 				}
 			    
 			});
@@ -302,7 +307,7 @@ public class artistesFrame extends JFrame {
 	private JButton getBtnConfirmer() {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
-			btnConfirmer.setBounds(65, 195, 89, 23);
+			btnConfirmer.setBounds(42, 193, 129, 23);
 		}
 		return btnConfirmer;
 	}

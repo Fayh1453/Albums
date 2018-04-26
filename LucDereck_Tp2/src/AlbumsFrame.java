@@ -282,6 +282,10 @@ public class AlbumsFrame extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 	
 					dispose();
+					ChoixDesTraitements choix = new ChoixDesTraitements();
+					choix.setLocationRelativeTo(null);
+					choix.setVisible(true);
+					choix.setResizable(false);
 				}
 			    
 			});
