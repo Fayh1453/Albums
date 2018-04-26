@@ -22,6 +22,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
@@ -58,10 +59,10 @@ public class artistesFrame extends JFrame {
 	private JList<Albums> list;
 	private JScrollPane scrollPane;
 	private JButton btnConfirmer;
-	private JTextField textField_2;
 	private JButton btnImage;
 
-	
+	GestionArtiste gestionArtiste;
+	ModeleArtistes modeleArtistes;
 	
 	
 
@@ -81,7 +82,6 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getPanelListeAlbums());
 		contentPane.add(getPanel_2());
 		btnConfirmer.setVisible(false);
-		textField_2.setVisible(false);
 		btnImage.setVisible(false);
 	}
 	private JTable getArtistesTable() {
@@ -90,8 +90,8 @@ public class artistesFrame extends JFrame {
 			if (artistesTable == null) {
 				artistesTable = new JTable();
 				artistesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				GestionArtiste gestionArtiste = new GestionArtiste();
-				ModeleArtistes modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
+				gestionArtiste = new GestionArtiste();
+				modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
 				artistesTable.setModel(modeleArtistes);
 				artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 				
@@ -99,13 +99,10 @@ public class artistesFrame extends JFrame {
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
 					public void mouseReleased(MouseEvent e) {
-						textField_2.setVisible(false);
 						btnImage.setVisible(false);
 						int numLigne;
 						numLigne = artistesTable.getSelectedRow();
 						Artistes artiste = modeleArtistes.getElement(numLigne);
-
-						artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
 						
 						btnConfirmer.setVisible(false);
 				
@@ -180,7 +177,6 @@ public class artistesFrame extends JFrame {
 			panelListeAlbums.add(getLblImageAlbum());
 			panelListeAlbums.add(getList_1());
 			panelListeAlbums.add(getBtnConfirmer());
-			panelListeAlbums.add(getTextField_2());
 			panelListeAlbums.add(getBtnImage());
 		}
 		return panelListeAlbums;
@@ -308,7 +304,6 @@ public class artistesFrame extends JFrame {
 		
 		effacerInfos();
 		
-		textField_2.setVisible(true);
 		btnImage.setVisible(true);
 		btnImage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -333,7 +328,7 @@ public class artistesFrame extends JFrame {
 		textField.setText("");
 		textField_1.setText("");
 		lblImageAlbum.setIcon(null);
-		lblImageAlbum.setText("Ajouter");	
+		lblImageAlbum.setText("Choisir une image");	
 		checkBox.setSelected(false);
 		list.setVisible(false);
 		
@@ -341,12 +336,39 @@ public class artistesFrame extends JFrame {
 	
 	private void confirmerAjout() {
 		///////////////////
+		try {
+			int numero = Integer.parseInt(textField.getText());
+			
+			String nom = textField_1.getText();
+			
+			boolean membre = false;
+			
+			if ( checkBox.isSelected()) {
+				membre = true;
+			}
+			
+			String iconfilename = lblImageAlbum.getIcon().toString();
+			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+			
+			Artistes artiste = new Artistes(numero,nom,membre,fileName);
+			
+			gestionArtiste.ajouterArtistesBD(artiste);
+			modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
+			artistesTable.setModel(modeleArtistes);
+			
+			effacerInfos();
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + e.getMessage() ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void ajouterImage() {
 		//////////////////////
 		String chemin = GestionFichier.Ouvrir(this);
-		textField_2.setText(chemin);
+		lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + chemin)));
+
+		
 	}
 	
 
@@ -397,14 +419,7 @@ public class artistesFrame extends JFrame {
 		}
 		return btnConfirmer;
 	}
-	private JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			textField_2.setBounds(91, 167, 90, 20);
-		}
-		return textField_2;
-	}
+
 	private JButton getBtnImage() {
 		if (btnImage == null) {
 			btnImage = new JButton("Image");

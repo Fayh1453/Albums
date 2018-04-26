@@ -66,11 +66,15 @@ public class GestionArtiste {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			listeArtistes.add(artiste);
 			boolAjout = true;
+			
 			
 		} catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'enregistrement de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
+		
+		
 
 		
 		return boolAjout;	
