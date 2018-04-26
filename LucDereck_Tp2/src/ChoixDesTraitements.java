@@ -5,11 +5,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -73,31 +77,30 @@ public class ChoixDesTraitements extends JFrame {
 		}
 		return panel;
 	}
+
 	private JButton getBtnArtistes() {
 		if (btnArtistes == null) {
 			btnArtistes = new JButton("Artistes");
 			btnArtistes.setBounds(84, 100, 89, 23);
-			
-			btnArtistes.addActionListener(new ActionListener() {
 
+			btnArtistes.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
 					artistesFrame artistes = new artistesFrame();
-	
-					
-					
+
 					artistes.setLocationRelativeTo(null);
 					artistes.setVisible(true);
 					artistes.setResizable(false);
-					
+
 				}
-			    
+
 			});
 		}
 		return btnArtistes;
 	}
+
 	private JButton getBtnAlbums() {
 		if (btnAlbums == null) {
 			btnAlbums = new JButton("Albums");
@@ -106,9 +109,8 @@ public class ChoixDesTraitements extends JFrame {
 				}
 			});
 			btnAlbums.setBounds(84, 146, 89, 23);
-			
-			btnAlbums.addActionListener(new ActionListener() {
 
+			btnAlbums.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
@@ -117,31 +119,32 @@ public class ChoixDesTraitements extends JFrame {
 					albums.setLocationRelativeTo(null);
 					albums.setVisible(true);
 					albums.setResizable(false);
-					
+
 				}
-			    
+
 			});
 		}
 		return btnAlbums;
 	}
+
 	private JButton getBtnQuitter() {
 		if (btnQuitter == null) {
 			btnQuitter = new JButton("Quitter");
 			btnQuitter.setBounds(84, 191, 89, 23);
-			
-			btnQuitter.addActionListener(new ActionListener() {
 
+			btnQuitter.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-	
+
 					dispose();
 				}
-			    
+
 			});
 		}
 		return btnQuitter;
 	}
+
 	private JLabel getLblChoixDesTraitements() {
 		if (lblChoixDesTraitements == null) {
 			lblChoixDesTraitements = new JLabel("Choix des traitements");
@@ -151,10 +154,30 @@ public class ChoixDesTraitements extends JFrame {
 		}
 		return lblChoixDesTraitements;
 	}
+
 	private JButton getBtnAide() {
 		if (btnAide == null) {
 			btnAide = new JButton("Aide");
 			btnAide.setBounds(84, 230, 89, 23);
+			btnAide.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						String filePath = new File("").getAbsolutePath();
+						File fleFichier = new File(filePath+"/bin/aideEnligne.chm");
+						Desktop.getDesktop().open(fleFichier);
+						
+						
+					} catch(IOException msg) {
+						System.out.println(msg);
+					}
+				}
+
+			}
+
+			);
+
 		}
 		return btnAide;
 	}
