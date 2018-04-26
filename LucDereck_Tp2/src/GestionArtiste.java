@@ -145,7 +145,7 @@ public class GestionArtiste {
 				liste.addElement(new Albums(Integer.parseInt(numero), titre, Double.parseDouble(prix),
 						genre,Integer.parseInt(annee),maison,image,Integer.parseInt(numeroArtiste)));
 				
-					
+					 
 		}
 			
 			
