@@ -86,7 +86,7 @@ public class artistesFrame extends JFrame {
 		
 		ModeleArtistes modeleArtistes= new ModeleArtistes(liste);
 		artistesTable.setModel(modeleArtistes);
-		
+		artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 		
 		
 		return artistesTable;

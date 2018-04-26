@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,6 +21,10 @@ import javax.swing.JButton;
 
 public class AlbumsFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8283572707302029259L;
 	private JPanel contentPane;
 	private JPanel panel;
 	private JPanel panel_1;
@@ -97,6 +102,18 @@ public class AlbumsFrame extends JFrame {
 			panel_1.add(getTextField_5());
 		}
 		return panel_1;
+	}
+	public JTable setAlbumsTable(ArrayList<Albums> liste) {
+		ModeleAlbums modeleAlbums = new ModeleAlbums(liste);
+		tableAlbums.setModel(modeleAlbums);
+
+		
+		
+		return tableAlbums;
+		
+		
+		
+		
 	}
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
@@ -267,6 +284,18 @@ public class AlbumsFrame extends JFrame {
 		if (btnRechercher == null) {
 			btnRechercher = new JButton("Rechercher");
 			btnRechercher.setBounds(54, 216, 113, 23);
+			btnRechercher.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					RechercheAlbum recherche = new RechercheAlbum(AlbumsFrame.this);
+					recherche.setModal(true);
+					recherche.setLocationRelativeTo(null);
+					recherche.setVisible(true);
+					recherche.setResizable(false);
+				}
+				
+			});
 		}
 		return btnRechercher;
 	}
@@ -292,4 +321,5 @@ public class AlbumsFrame extends JFrame {
 		}
 		return btnQuitter;
 	}
+
 }

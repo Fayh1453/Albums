@@ -149,7 +149,39 @@ public class GestionAlbums {
 		return nom;
 		
 	}
+	public ArrayList<Albums> rechercherAlbumsBD(String numRec, String titreRec, String artRec) {
+		
+		ArrayList<Albums> liste = new ArrayList<>();
 
+		String requete = "SELECT * FROM Album WHERE numero LIKE '%"+numRec+"%' AND titre LIKE '%"+ titreRec+"%' and numeroArtiste LIKE '%"+artRec+"%'"; 
+		
+		
+		try(Statement statement = connexion.createStatement();
+				ResultSet jeuResultat= statement.executeQuery(requete)){
+			
+			while (jeuResultat.next()) {				
+					String numero = jeuResultat.getString("numero");
+					String titre = jeuResultat.getString("titre");
+					String prix = jeuResultat.getString("prix");
+					String genre = jeuResultat.getString("genre");
+					String annee = jeuResultat.getString("annee");
+					String maison = jeuResultat.getString("maison");
+					String image = jeuResultat.getString("image");
+					String numeroArtiste = jeuResultat.getString("numeroArtiste");
+					
+					liste.add(new Albums(Integer.parseInt(numero), titre, Double.parseDouble(prix),
+							genre,Integer.parseInt(annee),maison,image,Integer.parseInt(numeroArtiste)));
+						
+			}
+			
+			
+		}catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+
+		return liste;
+	
+	}
 	
 	
 	

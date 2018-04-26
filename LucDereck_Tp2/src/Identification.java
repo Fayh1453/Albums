@@ -36,8 +36,8 @@ public class Identification extends JFrame {
 	private JButton btnValider;
 	private JButton btnQuitter;
 	private JPasswordField passwordField;
-	private String username = "Test";
-	private String password = "123";
+	private String username = "";
+	private String password = "";
 
 	/**
 	 * Launch the application.
