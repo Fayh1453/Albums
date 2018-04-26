@@ -238,7 +238,7 @@ public class artistesFrame extends JFrame {
 					recherche.setLocationRelativeTo(null);
 					recherche.setVisible(true);
 					recherche.setResizable(false);
-					recherche.setModal(false);
+					recherche.setModal(true);
 				}
 				
 			});
