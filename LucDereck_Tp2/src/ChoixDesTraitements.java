@@ -81,7 +81,7 @@ public class ChoixDesTraitements extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-
+					dispose();
 					artistesFrame artistes = new artistesFrame();
 	
 					
@@ -110,6 +110,7 @@ public class ChoixDesTraitements extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+					dispose();
 					AlbumsFrame albums = new AlbumsFrame();
 					albums.setLocationRelativeTo(null);
 					albums.setVisible(true);

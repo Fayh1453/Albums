@@ -146,15 +146,15 @@ public class Identification extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					
 					if (verifier()) {
-						System.out.println(textNom.getText());
 						ControleConnexion.connecter();
 
 						ChoixDesTraitements choix = new ChoixDesTraitements();
 						choix.setLocationRelativeTo(null);
 						choix.setVisible(true);
 						choix.setResizable(false);
-						
-						close();
+
+						dispose();
+
 					}
 
 
