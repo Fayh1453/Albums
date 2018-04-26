@@ -62,7 +62,6 @@ public class artistesFrame extends JFrame {
 	private JButton btnConfirmer;
 	private JButton btnImage;
 	private Artistes artiste;
-
 	private GestionArtiste gestionArtiste;
 	private ModeleArtistes modeleArtistes;
 	
@@ -88,7 +87,8 @@ public class artistesFrame extends JFrame {
 	}
 	public JTable setArtistesTable(ArrayList<Artistes> liste) {
 		
-		modeleArtistes= new ModeleArtistes(liste);
+
+		modeleArtistes = new ModeleArtistes(liste);
 		artistesTable.setModel(modeleArtistes);
 		artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 		
@@ -323,6 +323,14 @@ public class artistesFrame extends JFrame {
 		if (button_3 == null) {
 			button_3 = new JButton("Modifier");
 			button_3.setBounds(48, 112, 132, 23);
+			
+			button_3.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					modifier();
+				}
+				
+			});
 		}
 		return button_3;
 	}
@@ -378,6 +386,30 @@ public class artistesFrame extends JFrame {
 		
 	}
 	
+	private void modifier() {
+		btnConfirmer.setVisible(true);
+		
+		btnImage.setVisible(true);
+		btnImage.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ajouterImage();
+			}
+		});
+		
+		btnConfirmer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				confirmerModif();
+			}
+		});
+		
+		
+		
+		
+		
+	}
+	
 	private void confirmerAjout() {
 		///////////////////
 		try {
@@ -394,18 +426,42 @@ public class artistesFrame extends JFrame {
 			String iconfilename = lblImageAlbum.getIcon().toString();
 			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
 			
-			Artistes artiste = new Artistes(numero,nom,membre,fileName);
+			artiste = new Artistes(numero,nom,membre,fileName);
 			
 			gestionArtiste.ajouterArtistesBD(artiste);
-			modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
-			artistesTable.setModel(modeleArtistes);
-			artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
+
+			
+			setArtistesTable(gestionArtiste.getListeArtistes());
+
+
 			
 			effacerInfos();
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + e.getMessage() ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	private void confirmerModif() {
+		
+		int numero = Integer.parseInt(textField.getText());
+		
+		String nom = textField_1.getText();
+		
+		boolean membre = false;
+		
+		if ( checkBox.isSelected()) {
+			membre = true;
+		}
+		
+		String iconfilename = lblImageAlbum.getIcon().toString();
+		String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+		
+		artiste = new Artistes(numero,nom,membre,fileName);
+		
+		gestionArtiste.modifierArtistesBD(artiste);
+		setArtistesTable(gestionArtiste.getListeArtistes());
+		
 	}
 	
 	private void ajouterImage() {

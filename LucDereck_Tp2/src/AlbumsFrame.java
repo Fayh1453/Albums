@@ -53,6 +53,7 @@ public class AlbumsFrame extends JFrame {
 	private GestionAlbums gestionAlbums;
 	private Albums album;
 
+
 	/**
 	 * Create the frame.
 	 */
@@ -122,7 +123,9 @@ public class AlbumsFrame extends JFrame {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
 			gestionAlbums = new GestionAlbums();
-			modeleAlbum= new ModeleAlbums(gestionAlbums.getListeAlbums());
+
+			modeleAlbum = new ModeleAlbums(gestionAlbums.getListeAlbums());
+
 			tableAlbums.setModel(modeleAlbum);
 			
 			tableAlbums.addMouseListener(new MouseAdapter() {

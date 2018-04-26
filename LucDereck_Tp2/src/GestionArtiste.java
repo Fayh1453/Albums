@@ -118,6 +118,17 @@ public class GestionArtiste {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			
+			for ( Artistes art : listeArtistes) {
+				if ( art.getNumero() == artiste.getNumero()) {
+					
+					System.out.println(art.getNom() + " " + artiste.getNom());
+					art = artiste;
+					System.out.println(art.getNom());
+				}
+			}
+			///////
+			
 			boolModif = true;
 			
 		} catch (SQLException sqle) {
