@@ -54,6 +54,8 @@ public class AlbumsFrame extends JFrame {
 	private Albums album;
 	private JButton btnImage;
 	private JButton btnConfirmer;
+	private JLabel lblGenre;
+	private JTextField textField_6;
 
 
 	/**
@@ -112,6 +114,8 @@ public class AlbumsFrame extends JFrame {
 			panel_1.add(getTextField_5());
 			panel_1.add(getBtnImage());
 			panel_1.add(getBtnConfirmer());
+			panel_1.add(getLblGenre());
+			panel_1.add(getTextField_6());
 		}
 		return panel_1;
 	}
@@ -215,21 +219,21 @@ public class AlbumsFrame extends JFrame {
 	private JLabel getLblMaison() {
 		if (lblMaison == null) {
 			lblMaison = new JLabel("Maison");
-			lblMaison.setBounds(10, 121, 46, 14);
+			lblMaison.setBounds(10, 112, 46, 14);
 		}
 		return lblMaison;
 	}
 	private JLabel getLblPrix() {
 		if (lblPrix == null) {
 			lblPrix = new JLabel("Prix");
-			lblPrix.setBounds(10, 159, 46, 14);
+			lblPrix.setBounds(10, 146, 46, 14);
 		}
 		return lblPrix;
 	}
 	private JLabel getLblArtiste() {
 		if (lblArtiste == null) {
 			lblArtiste = new JLabel("Artiste");
-			lblArtiste.setBounds(10, 201, 46, 14);
+			lblArtiste.setBounds(10, 177, 46, 14);
 		}
 		return lblArtiste;
 	}
@@ -260,7 +264,7 @@ public class AlbumsFrame extends JFrame {
 	private JTextField getTextField_3() {
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
-			textField_3.setBounds(77, 118, 112, 20);
+			textField_3.setBounds(77, 112, 112, 20);
 			textField_3.setColumns(10);
 		}
 		return textField_3;
@@ -268,7 +272,7 @@ public class AlbumsFrame extends JFrame {
 	private JTextField getTextField_4() {
 		if (textField_4 == null) {
 			textField_4 = new JTextField();
-			textField_4.setBounds(77, 156, 112, 20);
+			textField_4.setBounds(77, 143, 112, 20);
 			textField_4.setColumns(10);
 		}
 		return textField_4;
@@ -276,7 +280,7 @@ public class AlbumsFrame extends JFrame {
 	private JTextField getTextField_5() {
 		if (textField_5 == null) {
 			textField_5 = new JTextField();
-			textField_5.setBounds(77, 198, 112, 20);
+			textField_5.setBounds(77, 174, 112, 20);
 			textField_5.setColumns(10);
 		}
 		return textField_5;
@@ -481,5 +485,20 @@ public class AlbumsFrame extends JFrame {
 			btnConfirmer.setBounds(247, 197, 93, 23);
 		}
 		return btnConfirmer;
+	}
+	private JLabel getLblGenre() {
+		if (lblGenre == null) {
+			lblGenre = new JLabel("Genre");
+			lblGenre.setBounds(10, 206, 46, 14);
+		}
+		return lblGenre;
+	}
+	private JTextField getTextField_6() {
+		if (textField_6 == null) {
+			textField_6 = new JTextField();
+			textField_6.setBounds(77, 205, 112, 20);
+			textField_6.setColumns(10);
+		}
+		return textField_6;
 	}
 }
