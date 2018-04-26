@@ -7,9 +7,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -77,10 +81,14 @@ public class ChoixDesTraitements extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
+
 					artistesFrame artistes = new artistesFrame();
-					artistes.setLocationRelativeTo(null);
-					artistes.setVisible(true);
-					artistes.setResizable(false);
+	
+					
+					
+					//artistes.setLocationRelativeTo(null);
+					//artistes.setVisible(true);
+					//artistes.setResizable(false);
 					
 				}
 			    

@@ -56,6 +56,7 @@ public class artistesFrame extends JFrame {
 	private JLabel lblImageAlbum;
 	private JList<Albums> list;
 	private JScrollPane scrollPane;
+	private JButton btnConfirmer;
 
 	
 	
@@ -168,6 +169,7 @@ public class artistesFrame extends JFrame {
 			panelListeAlbums.add(getCheckBox());
 			panelListeAlbums.add(getLblImageAlbum());
 			panelListeAlbums.add(getList_1());
+			panelListeAlbums.add(getBtnConfirmer());
 		}
 		return panelListeAlbums;
 	}
@@ -316,5 +318,12 @@ public class artistesFrame extends JFrame {
 			scrollPane.setViewportView(getArtistesTable());
 		}
 		return scrollPane;
+	}
+	private JButton getBtnConfirmer() {
+		if (btnConfirmer == null) {
+			btnConfirmer = new JButton("Confirmer");
+			btnConfirmer.setBounds(65, 195, 89, 23);
+		}
+		return btnConfirmer;
 	}
 }
