@@ -31,6 +31,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
+import java.awt.Font;
 
 public class artistesFrame extends JFrame {
 
@@ -57,6 +58,8 @@ public class artistesFrame extends JFrame {
 	private JList<Albums> list;
 	private JScrollPane scrollPane;
 	private JButton btnConfirmer;
+	private JTextField textField_2;
+	private JButton btnImage;
 
 	
 	
@@ -69,7 +72,7 @@ public class artistesFrame extends JFrame {
 	public artistesFrame() {
 		setTitle("Gestion des artistes, Ajout, Modification, Suppression, Recherche");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 679, 479);
+		setBounds(100, 100, 679, 493);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -155,7 +158,7 @@ public class artistesFrame extends JFrame {
 			panelListeAlbums = new JPanel();
 			panelListeAlbums.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 			panelListeAlbums.setBackground(Color.WHITE);
-			panelListeAlbums.setBounds(266, 11, 387, 251);
+			panelListeAlbums.setBounds(266, 11, 387, 264);
 			panelListeAlbums.setLayout(null);
 			panelListeAlbums.add(getTextField());
 			panelListeAlbums.add(getTextField_1());
@@ -166,6 +169,8 @@ public class artistesFrame extends JFrame {
 			panelListeAlbums.add(getLblImageAlbum());
 			panelListeAlbums.add(getList_1());
 			panelListeAlbums.add(getBtnConfirmer());
+			panelListeAlbums.add(getTextField_2());
+			panelListeAlbums.add(getBtnImage());
 		}
 		return panelListeAlbums;
 	}
@@ -218,6 +223,18 @@ public class artistesFrame extends JFrame {
 		if (button == null) {
 			button = new JButton("Rechercher");
 			button.setBounds(48, 234, 132, 23);
+			button.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					RechercheArtistes recherche = new RechercheArtistes();
+					recherche.setLocationRelativeTo(null);
+					recherche.setVisible(true);
+					recherche.setResizable(false);
+					recherche.setModal(false);
+				}
+				
+			});
 		}
 		return button;
 	}
@@ -225,6 +242,7 @@ public class artistesFrame extends JFrame {
 		if (button_1 == null) {
 			button_1 = new JButton("Supprimer");
 			button_1.setBounds(48, 176, 132, 23);
+			
 		}
 		return button_1;
 	}
@@ -269,7 +287,7 @@ public class artistesFrame extends JFrame {
 			panelButtons = new JPanel();
 			panelButtons.setBackground(Color.WHITE);
 			panelButtons.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-			panelButtons.setBounds(10, 11, 231, 419);
+			panelButtons.setBounds(10, 11, 231, 432);
 			panelButtons.setLayout(null);
 			panelButtons.add(getButton());
 			panelButtons.add(getButton_1());
@@ -299,7 +317,7 @@ public class artistesFrame extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(266, 273, 387, 157);
+			scrollPane.setBounds(266, 286, 387, 157);
 			scrollPane.setViewportView(getArtistesTable());
 		}
 		return scrollPane;
@@ -307,8 +325,24 @@ public class artistesFrame extends JFrame {
 	private JButton getBtnConfirmer() {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
-			btnConfirmer.setBounds(42, 193, 129, 23);
+			btnConfirmer.setBounds(25, 198, 129, 23);
 		}
 		return btnConfirmer;
+	}
+	private JTextField getTextField_2() {
+		if (textField_2 == null) {
+			textField_2 = new JTextField();
+			textField_2.setColumns(10);
+			textField_2.setBounds(91, 167, 90, 20);
+		}
+		return textField_2;
+	}
+	private JButton getBtnImage() {
+		if (btnImage == null) {
+			btnImage = new JButton("Image");
+			btnImage.setFont(new Font("Tahoma", Font.PLAIN, 8));
+			btnImage.setBounds(25, 166, 63, 23);
+		}
+		return btnImage;
 	}
 }
