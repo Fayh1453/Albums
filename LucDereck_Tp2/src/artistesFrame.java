@@ -61,9 +61,10 @@ public class artistesFrame extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnConfirmer;
 	private JButton btnImage;
+	private Artistes artiste;
 
-	GestionArtiste gestionArtiste;
-	ModeleArtistes modeleArtistes;
+	private GestionArtiste gestionArtiste;
+	private ModeleArtistes modeleArtistes;
 	
 	
 
@@ -87,7 +88,7 @@ public class artistesFrame extends JFrame {
 	}
 	public JTable setArtistesTable(ArrayList<Artistes> liste) {
 		
-		ModeleArtistes modeleArtistes= new ModeleArtistes(liste);
+		modeleArtistes= new ModeleArtistes(liste);
 		artistesTable.setModel(modeleArtistes);
 		artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 		
@@ -116,7 +117,7 @@ public class artistesFrame extends JFrame {
 						btnImage.setVisible(false);
 						int numLigne;
 						numLigne = artistesTable.getSelectedRow();
-						Artistes artiste = modeleArtistes.getElement(numLigne);
+						artiste = modeleArtistes.getElement(numLigne);
 
 						btnConfirmer.setVisible(false);
 				
@@ -263,7 +264,36 @@ public class artistesFrame extends JFrame {
 		if (button_1 == null) {
 			button_1 = new JButton("Supprimer");
 			button_1.setBounds(48, 176, 132, 23);
-			
+			button_1.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					if (artiste!=null) {
+						
+						int option = JOptionPane.showConfirmDialog(null,
+								"Voulez-vous vraiment supprimer "+artiste.getNom()+"?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						
+						if (option==JOptionPane.YES_OPTION) {
+							gestionArtiste.supprimerArtistesBD(artiste);
+
+							setArtistesTable(gestionArtiste.getListeArtistes());
+						}
+						
+						
+						
+					}
+					
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+			});
 		}
 		return button_1;
 	}
@@ -369,6 +399,7 @@ public class artistesFrame extends JFrame {
 			gestionArtiste.ajouterArtistesBD(artiste);
 			modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
 			artistesTable.setModel(modeleArtistes);
+			artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 			
 			effacerInfos();
 			
@@ -404,6 +435,7 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
+			lblImageAlbum.setFont(new Font("Tahoma", Font.PLAIN, 9));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;

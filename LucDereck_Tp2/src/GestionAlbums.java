@@ -91,6 +91,7 @@ public class GestionAlbums {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			listeAlbums.remove(album);
 			boolSupp = true;
 			
 		} catch (SQLException sqle) {

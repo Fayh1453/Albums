@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -48,7 +49,9 @@ public class AlbumsFrame extends JFrame {
 	private JButton btnSupprimer;
 	private JButton btnRechercher;
 	private JButton btnQuitter;
-
+	private ModeleAlbums modeleAlbum;
+	private GestionAlbums gestionAlbums;
+	private Albums album;
 
 	/**
 	 * Create the frame.
@@ -104,8 +107,8 @@ public class AlbumsFrame extends JFrame {
 		return panel_1;
 	}
 	public JTable setAlbumsTable(ArrayList<Albums> liste) {
-		ModeleAlbums modeleAlbums = new ModeleAlbums(liste);
-		tableAlbums.setModel(modeleAlbums);
+		modeleAlbum = new ModeleAlbums(liste);
+		tableAlbums.setModel(modeleAlbum);
 
 		
 		
@@ -118,15 +121,15 @@ public class AlbumsFrame extends JFrame {
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
-			GestionAlbums gestionAlbums = new GestionAlbums();
-			ModeleAlbums modeleAlbum= new ModeleAlbums(gestionAlbums.getListeAlbums());
+			gestionAlbums = new GestionAlbums();
+			modeleAlbum= new ModeleAlbums(gestionAlbums.getListeAlbums());
 			tableAlbums.setModel(modeleAlbum);
 			
 			tableAlbums.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					int numLigne;
 					numLigne = tableAlbums.getSelectedRow();
-					Albums album = modeleAlbum.getElement(numLigne);
+					album = modeleAlbum.getElement(numLigne);
 					
 					textField.setText(String.valueOf(album.getNumero()));
 					textField_1.setText(album.getTitre());
@@ -277,6 +280,36 @@ public class AlbumsFrame extends JFrame {
 		if (btnSupprimer == null) {
 			btnSupprimer = new JButton("Supprimer");
 			btnSupprimer.setBounds(54, 158, 113, 23);
+			btnSupprimer.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					
+					if (album!=null) {
+						
+						int option = JOptionPane.showConfirmDialog(null,
+								"Voulez-vous vraiment supprimer "+album.getTitre()+"?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+						
+						if (option==JOptionPane.YES_OPTION) {
+							gestionAlbums.supprimerAlbumBD(album);
+							setAlbumsTable(gestionAlbums.getListeAlbums());
+
+						}
+						
+						
+						
+					}
+					
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+			});
 		}
 		return btnSupprimer;
 	}

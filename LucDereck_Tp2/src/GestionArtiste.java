@@ -89,6 +89,7 @@ public class GestionArtiste {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			listeArtistes.remove(artiste);
 			boolSupp = true;
 			
 		} catch (SQLException sqle) {
