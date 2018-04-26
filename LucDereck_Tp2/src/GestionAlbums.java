@@ -142,7 +142,7 @@ public class GestionAlbums {
 				String membre = jeuResultat.getString("Membre");
 				String photo = jeuResultat.getString("photo");
 				
-				
+				 
 		}
 			
 			
