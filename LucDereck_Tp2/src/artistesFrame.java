@@ -283,6 +283,8 @@ public class artistesFrame extends JFrame {
 							gestionArtiste.supprimerArtistesBD(artiste);
 
 							setArtistesTable(gestionArtiste.getListeArtistes());
+							
+							effacerInfos();
 						}
 						
 						
@@ -365,12 +367,6 @@ public class artistesFrame extends JFrame {
 		button_3.setEnabled(false);
 		button_1.setEnabled(false);
 		btnImage.setVisible(true);
-		btnImage.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ajouterImage();
-			}
-		});
 		
 		
 		btnConfirmer.setVisible(true);
@@ -398,12 +394,7 @@ public class artistesFrame extends JFrame {
 		btnConfirmer.setVisible(true);
 		textField.setEditable(false);
 		btnImage.setVisible(true);
-		btnImage.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ajouterImage();
-			}
-		});
+
 		
 		btnConfirmer.addMouseListener(new MouseAdapter() {
 			@Override
@@ -411,11 +402,6 @@ public class artistesFrame extends JFrame {
 				confirmerModif();
 			}
 		});
-		
-		
-		
-		
-		
 	}
 	
 	private void confirmerAjout() {
@@ -446,7 +432,7 @@ public class artistesFrame extends JFrame {
 			effacerInfos();
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + e.getMessage() ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'ajout d'un artiste: Assurez vous de bien remplir les informations et l'image "  ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -465,10 +451,15 @@ public class artistesFrame extends JFrame {
 		String iconfilename = lblImageAlbum.getIcon().toString();
 		String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
 		
-		artiste = new Artistes(numero,nom,membre,fileName);
-		
-		gestionArtiste.modifierArtistesBD(artiste);
-		setArtistesTable(gestionArtiste.getListeArtistes());
+		try {
+			artiste = new Artistes(numero,nom,membre,fileName);
+			
+			gestionArtiste.modifierArtistesBD(artiste);
+			setArtistesTable(gestionArtiste.getListeArtistes());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un artiste : Assurez vous de bien remplir les informations et l'image" ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+		}
+
 
 		
 	}
@@ -536,6 +527,13 @@ public class artistesFrame extends JFrame {
 			btnImage = new JButton("Image");
 			btnImage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			btnImage.setBounds(25, 166, 63, 23);
+			
+			btnImage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouterImage();
+				}
+			});
 		}
 		return btnImage;
 	}

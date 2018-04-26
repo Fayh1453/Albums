@@ -135,7 +135,7 @@ public class RechercheAlbum extends JDialog {
 	}
 	private JLabel getLblArtisteDeLalbum() {
 		if (lblArtisteDeLalbum == null) {
-			lblArtisteDeLalbum = new JLabel("Artiste de l'album :");
+			lblArtisteDeLalbum = new JLabel("Numéro d'artiste de l'album :");
 			lblArtisteDeLalbum.setBounds(10, 71, 114, 14);
 		}
 		return lblArtisteDeLalbum;

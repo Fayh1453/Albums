@@ -121,16 +121,11 @@ public class AlbumsFrame extends JFrame {
 	}
 	public JTable setAlbumsTable(ArrayList<Albums> liste) {
 		modeleAlbum = new ModeleAlbums(liste);
-		tableAlbums.setModel(modeleAlbum);
-
+		tableAlbums.setModel(modeleAlbum);		
 		
-		
-		return tableAlbums;
-		
-		
-		
-		
+		return tableAlbums;	
 	}
+	
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
@@ -157,8 +152,9 @@ public class AlbumsFrame extends JFrame {
 					textField_1.setText(album.getTitre());
 					textField_2.setText(String.valueOf(album.getAnnee()));
 					textField_3.setText(album.getMaison());
-					textField_4.setText(String.valueOf(album.getPrix() + " $"));
+					textField_4.setText(String.valueOf(album.getPrix()));
 					textField_5.setText(gestionAlbums.getNomArtiste(album.getNumeroArtiste()));
+					textField_6.setText(album.getGenre());
 					
 					String image = album.getImage();
 					try {
@@ -312,12 +308,6 @@ public class AlbumsFrame extends JFrame {
 		btnImage.setVisible(true);
 		btnConfirmer.setVisible(true);
 
-		btnImage.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ajouterImage();
-			}
-		});
 		
 		
 		btnConfirmer.setVisible(true);
@@ -332,8 +322,7 @@ public class AlbumsFrame extends JFrame {
 	private void confirmerAjout() {
 		///////////////////
 		try {
-			int numero = Integer.parseInt(textField.getText());
-			
+			int numero = Integer.parseInt(textField.getText());			
 			String titre = textField_1.getText();
 			int annee = Integer.parseInt(textField_2.getText());
 			String maison =  textField_3.getText();
@@ -346,19 +335,17 @@ public class AlbumsFrame extends JFrame {
 
 			
 			album = new Albums(numero,titre,prix,genre,annee,maison,fileName,numeroArtiste);
-		/*	artiste = new Artistes(numero,nom,membre,fileName);
 			
-			gestionArtiste.ajouterArtistesBD(artiste);
-
+			gestionAlbums.ajouterAlbumsBD(album);
 			
-			setArtistesTable(gestionArtiste.getListeArtistes());
+			setAlbumsTable(gestionAlbums.getListeAlbums());
 
-*/
 			
 			effacerInfos();
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + e.getMessage() ,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image"
+					,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -379,6 +366,7 @@ public class AlbumsFrame extends JFrame {
 		textField_3.setText("");
 		textField_4.setText("");
 		textField_5.setText("");
+		textField_6.setText("");
 		lblNewLabel.setIcon(null);
 		lblNewLabel.setText("Choisir une image");
 
@@ -390,9 +378,67 @@ public class AlbumsFrame extends JFrame {
 		if (btnModifier == null) {
 			btnModifier = new JButton("Modifier");
 			btnModifier.setBounds(54, 106, 113, 23);
+			
+			
+			btnModifier.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					modifier();
+				}
+				
+			});
 		}
 		return btnModifier;
 	}
+	
+	
+	private void modifier() {
+		btnConfirmer.setVisible(true);
+		textField.setEditable(false);
+		btnImage.setVisible(true);
+		btnConfirmer.setVisible(true);
+		lblArtiste.setText("# Artiste");
+		textField_5.setText(String.valueOf(album.getNumeroArtiste()));
+
+		
+		btnConfirmer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				confirmerModif();
+			}
+		});
+	}
+	
+	
+	private void confirmerModif() {
+		
+		int numero = Integer.parseInt(textField.getText());			
+		String titre = textField_1.getText();
+		int annee = Integer.parseInt(textField_2.getText());
+		String maison =  textField_3.getText();
+		double prix =  Double.parseDouble(textField_4.getText());
+		int numeroArtiste = Integer.parseInt(textField_5.getText());
+		String genre = textField_6.getText();
+
+		String fileName;
+		try {
+		String iconfilename = lblNewLabel.getIcon().toString();
+		fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+
+		album = new Albums(numero,titre,prix,genre,annee,maison,fileName,numeroArtiste);
+		
+		gestionAlbums.modifierAlbumsBD(album);
+		setAlbumsTable(gestionAlbums.getListeAlbums());
+		
+		} catch (Exception e) {
+			fileName = "";
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image" 
+					,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
+	
 	private JButton getBtnSupprimer() {
 		if (btnSupprimer == null) {
 			btnSupprimer = new JButton("Supprimer");
@@ -410,6 +456,7 @@ public class AlbumsFrame extends JFrame {
 						if (option==JOptionPane.YES_OPTION) {
 							gestionAlbums.supprimerAlbumBD(album);
 							setAlbumsTable(gestionAlbums.getListeAlbums());
+							effacerInfos();
 
 						}
 						
@@ -483,6 +530,14 @@ public class AlbumsFrame extends JFrame {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
 			btnConfirmer.setBounds(247, 197, 93, 23);
+			
+			btnImage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouterImage();
+				}
+			});
+			
 		}
 		return btnConfirmer;
 	}

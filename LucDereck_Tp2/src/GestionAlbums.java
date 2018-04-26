@@ -45,11 +45,13 @@ public class GestionAlbums {
 					
 					liste.add(new Albums(Integer.parseInt(numero), titre, Double.parseDouble(prix),
 							genre,Integer.parseInt(annee),maison,image,Integer.parseInt(numeroArtiste)));
+					
+					
 						
 			}
 		
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return liste;
@@ -72,6 +74,7 @@ public class GestionAlbums {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			listeAlbums.add(album);
 			boolAjout = true;
 			
 		} catch (SQLException sqle) {
@@ -119,6 +122,7 @@ public class GestionAlbums {
 			
 			Statement statement = connexion.createStatement();
 			statement.executeUpdate(requete);
+			listeAlbums = obtenirListeAlbums();
 			boolModif = true;
 			
 		} catch (SQLException sqle) {
@@ -177,7 +181,7 @@ public class GestionAlbums {
 			
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return liste;
