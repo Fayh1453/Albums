@@ -72,6 +72,8 @@ public class AlbumsFrame extends JFrame {
 		contentPane.add(getScrollPane());
 		btnModifier.setEnabled(false);
 		btnSupprimer.setEnabled(false);
+		btnImage.setVisible(false);
+		btnConfirmer.setVisible(false);
 	}
 	private JPanel getPanel() {
 		if (panel == null) {
@@ -136,9 +138,12 @@ public class AlbumsFrame extends JFrame {
 			
 			tableAlbums.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
+					lblArtiste.setText("Artiste");
 					textField.setEditable(false);
 					btnModifier.setEnabled(true);
 					btnSupprimer.setEnabled(true);
+					btnImage.setVisible(false);
+					btnConfirmer.setVisible(false);
 					
 					int numLigne;
 					numLigne = tableAlbums.getSelectedRow();
@@ -295,11 +300,14 @@ public class AlbumsFrame extends JFrame {
 	private void ajouter() {
 		
 		effacerInfos();
+		lblArtiste.setText("#Artiste");
 		
 		textField.setEditable(true);	
 		btnModifier.setEnabled(false);
 		btnSupprimer.setEnabled(false);
-	/*	btnImage.setVisible(true);
+		btnImage.setVisible(true);
+		btnConfirmer.setVisible(true);
+
 		btnImage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -314,7 +322,48 @@ public class AlbumsFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				confirmerAjout();
 			}
-		});*/
+		});
+	}
+	
+	private void confirmerAjout() {
+		///////////////////
+		try {
+			int numero = Integer.parseInt(textField.getText());
+			
+			String titre = textField_1.getText();
+			int annee = Integer.parseInt(textField_2.getText());
+			String maison =  textField_3.getText();
+			double prix =  Double.parseDouble(textField_4.getText());
+			int numeroArtiste = Integer.parseInt(textField_5.getText());
+			String genre = textField_6.getText();
+			String iconfilename = lblNewLabel.getIcon().toString();
+			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+			
+
+			
+			album = new Albums(numero,titre,prix,genre,annee,maison,fileName,numeroArtiste);
+		/*	artiste = new Artistes(numero,nom,membre,fileName);
+			
+			gestionArtiste.ajouterArtistesBD(artiste);
+
+			
+			setArtistesTable(gestionArtiste.getListeArtistes());
+
+*/
+			
+			effacerInfos();
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + e.getMessage() ,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void ajouterImage() {
+		//////////////////////
+		String chemin = GestionFichier.Ouvrir(this);
+		lblNewLabel.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + chemin)));
+
+		
 	}
 	
 	private void effacerInfos() {
@@ -328,10 +377,8 @@ public class AlbumsFrame extends JFrame {
 		textField_5.setText("");
 		lblNewLabel.setIcon(null);
 		lblNewLabel.setText("Choisir une image");
-	/*	lblImageAlbum.setIcon(null);
-		lblImageAlbum.setText("Choisir une image");	
-		checkBox.setSelected(false);
-		list.setVisible(false);*/
+
+		
 		
 	}
 	
@@ -424,14 +471,14 @@ public class AlbumsFrame extends JFrame {
 	private JButton getBtnImage() {
 		if (btnImage == null) {
 			btnImage = new JButton("Image");
-			btnImage.setBounds(247, 167, 89, 23);
+			btnImage.setBounds(247, 167, 93, 23);
 		}
 		return btnImage;
 	}
 	private JButton getBtnConfirmer() {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
-			btnConfirmer.setBounds(247, 197, 89, 23);
+			btnConfirmer.setBounds(247, 197, 93, 23);
 		}
 		return btnConfirmer;
 	}
