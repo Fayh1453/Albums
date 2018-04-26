@@ -103,6 +103,13 @@ public class Albums {
 		this.numeroArtiste = numeroArtiste;
 	}
 	
+	@Override
+	public String toString() {
+		
+		
+		return (this.titre + " " + this.annee);
+		
+	}
 	
 	
 	

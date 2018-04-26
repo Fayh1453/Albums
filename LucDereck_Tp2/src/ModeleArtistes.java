@@ -46,4 +46,9 @@ public class ModeleArtistes extends AbstractTableModel{
 		return lesTitres[columnIndex];
 	}
 	
+	public Artistes getElement(int row) {
+		return lesDonnees.get(row);
+		
+	}
+	
 }

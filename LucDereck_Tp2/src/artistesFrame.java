@@ -1,6 +1,9 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -15,11 +18,15 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
@@ -46,26 +53,13 @@ public class artistesFrame extends JFrame {
 	private JButton button_4;
 	private JPanel panelButtons;
 	private JLabel lblImageAlbum;
-	private JList list;
+	private JList<Albums> list;
 	private JScrollPane scrollPane;
+
 	
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					artistesFrame frame = new artistesFrame();
-					frame.setVisible(true);
-					GestionArtiste gestion = new GestionArtiste(); 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+
 
 	/**
 	 * Create the frame.
@@ -87,10 +81,65 @@ public class artistesFrame extends JFrame {
 			
 			if (artistesTable == null) {
 				artistesTable = new JTable();
+				artistesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				GestionArtiste gestionArtiste = new GestionArtiste();
-				artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+				ModeleArtistes modeleArtistes= new ModeleArtistes(gestionArtiste.getListeArtistes());
+				artistesTable.setModel(modeleArtistes);
+				
+				artistesTable.addMouseListener(new MouseAdapter() {
+					public void mouseReleased(MouseEvent e) {
+						int numLigne;
+						numLigne = artistesTable.getSelectedRow();
+						Artistes artiste = modeleArtistes.getElement(numLigne);
 						
-				}
+						textField.setText(String.valueOf(artiste.getNumero()));
+						textField_1.setText(String.valueOf(artiste.getNom()));
+						
+						if (artiste.getMembre()) {
+							checkBox.setSelected(true);
+						} else {
+							checkBox.setSelected(false);
+						}	
+						String image = artiste.getPhoto();
+						try {
+							lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + image)));
+						} catch (Exception error) {
+							lblImageAlbum.setIcon(null);
+							lblImageAlbum.setText("Image non disponible");
+						}	
+						
+						
+						list.setModel(gestionArtiste.getListeAlbum(artiste.getNumero()));
+					}
+
+					
+					
+					
+				});
+				
+				modeleArtistes.addTableModelListener(new TableModelListener() {
+
+					@Override
+					public void tableChanged(TableModelEvent e) {
+						// TODO Auto-generated method stub
+						switch(e.getType()) {
+						case TableModelEvent.INSERT:
+							System.out.println("Il y a eu insertion");
+							break;
+						case TableModelEvent.DELETE:
+							System.out.println("Il y a ey suppression");
+							break;
+						case TableModelEvent.UPDATE:
+							System.out.println("Il y a eu modification");
+							break;
+						default:break;
+						}
+					}
+					
+				});
+				
+						
+			}
 			
 			return artistesTable;
 				
@@ -221,14 +270,13 @@ public class artistesFrame extends JFrame {
 	private JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
-			lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/coeurDePirate.jpg")));
 			lblImageAlbum.setBounds(209, 11, 90, 90);
 		}
 		return lblImageAlbum;
 	}
-	private JList getList_1() {
+	private JList<Albums> getList_1() {
 		if (list == null) {
-			list = new JList();
+			list = new JList<Albums>();
 			list.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 			list.setBounds(209, 112, 147, 115);
 		}

@@ -47,4 +47,9 @@ public class ModeleAlbums extends AbstractTableModel {
 		return lesTitres[columnIndex];
 	}
 	
+	public Albums getElement(int row) {
+		return lesDonnees.get(row);
+		
+	}
+	
 }

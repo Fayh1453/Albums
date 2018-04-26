@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Artistes {
 	private int numero;
@@ -53,6 +54,8 @@ public class Artistes {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	
+
 	
 	
 	

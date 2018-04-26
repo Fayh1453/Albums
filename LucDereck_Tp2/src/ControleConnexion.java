@@ -12,10 +12,7 @@ public class ControleConnexion {
 
 
 	private static String url = "jdbc:mysql://localhost/LucDereck_Albums";
-	
-	public static void main(String[] args) {
-		connecter();
-	}
+
 
 	public static void connecter() {
 
@@ -40,23 +37,23 @@ public class ControleConnexion {
 
 		try {
 			
-			laConnexion = DriverManager.getConnection(url,"root","123");
+			laConnexion = DriverManager.getConnection(url, "root", "123");
 			System.out.println("Connect\u00E9 à la BD \n\n\n");
 			
 		
-			GestionArtiste gestionArtistes = new GestionArtiste();
+			//GestionArtiste gestionArtistes = new GestionArtiste();
 			
-			Artistes art = new Artistes(6,"d",true,"tessdfdfsduc.jpg");
-			gestionArtistes.supprimerArtistesBD(art);
-			
-			
-			System.out.println("\n\n");
+/*			Artistes art = new Artistes(6,"d",true,"tessdfdfsduc.jpg");
+			gestionArtistes.supprimerArtistesBD(art);*/
 			
 			
-			GestionAlbums gestionAlbums = new GestionAlbums();
+		//	System.out.println("\n\n");
 			
+			
+			//GestionAlbums gestionAlbums = new GestionAlbums();
+		/*	
 			Albums alb = new Albums(8,"test",1333.44,"WEE",1992,"YJJ","test.pgn",3);
-			gestionAlbums.modifierAlbumsBD(alb);
+			gestionAlbums.modifierAlbumsBD(alb);*/
 		
 
 

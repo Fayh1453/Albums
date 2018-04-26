@@ -1,6 +1,8 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
@@ -38,10 +40,6 @@ public class GestionArtiste {
 					liste.add(new Artistes(Integer.parseInt(numero), nom, (membre.equals("1")), photo));	
 			}
 			
-			
-			for(Artistes art : liste) {
-				System.out.println( art.getNumero()+ "   "+ art.getNom()  + " " +art.getMembre() + " " + art.getPhoto());	
-			}
 			
 		}catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
@@ -123,6 +121,40 @@ public class GestionArtiste {
 
 		
 		return boolModif;	
+	}
+	
+	public DefaultListModel<Albums> getListeAlbum(int numArtiste) {
+		
+		DefaultListModel<Albums> liste = new DefaultListModel<>();
+
+		String requete = "SELECT * FROM Album WHERE numeroArtiste = " + numArtiste;
+		
+		try(Statement statement = connexion.createStatement();
+				ResultSet jeuResultat= statement.executeQuery(requete)){
+			
+			while (jeuResultat.next()) {				
+				String numero = jeuResultat.getString("numero");
+				String titre = jeuResultat.getString("titre");
+				String prix = jeuResultat.getString("prix");
+				String genre = jeuResultat.getString("genre");
+				String annee = jeuResultat.getString("annee");
+				String maison = jeuResultat.getString("maison");
+				String image = jeuResultat.getString("image");
+				String numeroArtiste = jeuResultat.getString("numeroArtiste");
+				
+				liste.addElement(new Albums(Integer.parseInt(numero), titre, Double.parseDouble(prix),
+						genre,Integer.parseInt(annee),maison,image,Integer.parseInt(numeroArtiste)));
+				
+					
+		}
+			
+			
+		}catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+	
+		return liste;
+		
 	}
 
 

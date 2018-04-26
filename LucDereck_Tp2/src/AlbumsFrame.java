@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -42,21 +44,6 @@ public class AlbumsFrame extends JFrame {
 	private JButton btnRechercher;
 	private JButton btnQuitter;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AlbumsFrame frame = new AlbumsFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -115,7 +102,35 @@ public class AlbumsFrame extends JFrame {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
 			GestionAlbums gestionAlbums = new GestionAlbums();
-			tableAlbums.setModel(new ModeleAlbums(gestionAlbums.getListeAlbums()));
+			ModeleAlbums modeleAlbum= new ModeleAlbums(gestionAlbums.getListeAlbums());
+			tableAlbums.setModel(modeleAlbum);
+			
+			tableAlbums.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int numLigne;
+					numLigne = tableAlbums.getSelectedRow();
+					Albums album = modeleAlbum.getElement(numLigne);
+					
+					textField.setText(String.valueOf(album.getNumero()));
+					textField_1.setText(album.getTitre());
+					textField_2.setText(String.valueOf(album.getAnnee()));
+					textField_3.setText(album.getMaison());
+					textField_4.setText(String.valueOf(album.getPrix() + " $"));
+					textField_5.setText(String.valueOf(album.getNumeroArtiste()));
+					
+					String image = album.getImage();
+					try {
+					lblNewLabel.setIcon(new ImageIcon(AlbumsFrame.class.getResource("/Images/" + image)));
+					} catch (Exception error) {
+						lblNewLabel.setIcon(null);
+						lblNewLabel.setText("Image non disponible");
+					}
+					
+					
+					
+					
+				}
+			});
 					
 			}
 		

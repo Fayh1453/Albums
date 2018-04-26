@@ -4,6 +4,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
@@ -46,14 +47,7 @@ public class GestionAlbums {
 							genre,Integer.parseInt(annee),maison,image,Integer.parseInt(numeroArtiste)));
 						
 			}
-			
-			
-			for(Albums album : liste) {
-				System.out.println( album.getNumero()+ "   "+ album.getTitre() + " " +album.getPrix() + " "
-						+ album.getGenre() + " " + album.getAnnee() + " " + album.getMaison() + " " 
-						+ album.getImage() + " " + album.getNumeroArtiste());	
-			}
-			
+		
 		}catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
@@ -132,6 +126,32 @@ public class GestionAlbums {
 
 		
 		return boolModif;	
+	}
+	
+	public String getNomArtiste(int numArtiste) {
+		
+
+		String requete = "SELECT * FROM Artiste WHERE numero = " + numArtiste;
+		
+		try(Statement statement = connexion.createStatement();
+				ResultSet jeuResultat= statement.executeQuery(requete)){
+			
+			while (jeuResultat.next()) {				
+				String numero = jeuResultat.getString("numero");
+				String nom = jeuResultat.getString("nom");
+				String membre = jeuResultat.getString("Membre");
+				String photo = jeuResultat.getString("photo");
+				
+				
+		}
+			
+			
+		}catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+	
+		return "";
+		
 	}
 
 	
