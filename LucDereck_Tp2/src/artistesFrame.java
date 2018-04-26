@@ -77,6 +77,7 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getScrollPane());
 		contentPane.add(getPanelListeAlbums());
 		contentPane.add(getPanel_2());
+		btnConfirmer.setVisible(false);
 	}
 	private JTable getArtistesTable() {
 	
@@ -98,6 +99,8 @@ public class artistesFrame extends JFrame {
 						Artistes artiste = modeleArtistes.getElement(numLigne);
 
 						artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+						
+						btnConfirmer.setVisible(false);
 				
 
 						
@@ -118,7 +121,7 @@ public class artistesFrame extends JFrame {
 							lblImageAlbum.setText("Image non disponible");
 						}	
 						
-						
+						list.setVisible(true);
 						list.setModel(gestionArtiste.getListeAlbum(artiste.getNumero()));
 					}
 
@@ -270,13 +273,31 @@ public class artistesFrame extends JFrame {
 			button_4.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					
+					ajouter();
 				}
 				
 			});
 		}
 			
 		return button_4;
+	}
+	
+	private void ajouter() {
+		
+		effacerInfos();
+		btnConfirmer.setVisible(true);
+	}
+	
+	private void effacerInfos() {
+		
+		artistesTable.clearSelection();
+		textField.setText("");
+		textField_1.setText("");
+		lblImageAlbum.setIcon(null);
+		lblImageAlbum.setText("Ajouter");	
+		checkBox.setSelected(false);
+		list.setVisible(false);
+		
 	}
 	
 
