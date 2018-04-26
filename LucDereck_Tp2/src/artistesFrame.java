@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 public class artistesFrame extends JFrame {
 
@@ -87,8 +88,10 @@ public class artistesFrame extends JFrame {
 			
 			if (artistesTable == null) {
 				artistesTable = new JTable();
+				artistesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 				GestionArtiste gestionArtiste = new GestionArtiste();
 				artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+				artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
 						
 				}
 			

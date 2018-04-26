@@ -1,36 +1,43 @@
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.SystemColor;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
-import javax.swing.DropMode;
+import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 
 public class Identification extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1345081747692026013L;
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel label;
 	private JLabel lblConnexionAuProgramme;
 	private JLabel lblNomDutilisateur;
 	private JLabel lblMotDePasse;
-	private JTextField textField;
+	private JTextField textNom;
 	private JButton btnValider;
 	private JButton btnQuitter;
 	private JPasswordField passwordField;
+	private String username = "Test";
+	private String password = "123";
 
 	/**
 	 * Launch the application.
@@ -52,7 +59,8 @@ public class Identification extends JFrame {
 	 * Create the frame.
 	 */
 	public Identification() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Identification.class.getResource("/Images/connexionIcon.png")));
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(Identification.class.getResource("/Images/connexionIcon.png")));
 		setTitle("Gestion des albums");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 455, 317);
@@ -64,6 +72,7 @@ public class Identification extends JFrame {
 		contentPane.add(getBtnValider());
 		contentPane.add(getBtnQuitter());
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -74,11 +83,12 @@ public class Identification extends JFrame {
 			panel.add(getLblConnexionAuProgramme());
 			panel.add(getLblNomDutilisateur());
 			panel.add(getLblMotDePasse());
-			panel.add(getTextField());
+			panel.add(getTextNom());
 			panel.add(getPasswordField());
 		}
 		return panel;
 	}
+
 	/**
 	 * @wbp.nonvisual location=101,-11
 	 */
@@ -88,6 +98,7 @@ public class Identification extends JFrame {
 		}
 		return label;
 	}
+
 	private JLabel getLblConnexionAuProgramme() {
 		if (lblConnexionAuProgramme == null) {
 			lblConnexionAuProgramme = new JLabel("Connexion au programme");
@@ -97,6 +108,7 @@ public class Identification extends JFrame {
 		}
 		return lblConnexionAuProgramme;
 	}
+
 	private JLabel getLblNomDutilisateur() {
 		if (lblNomDutilisateur == null) {
 			lblNomDutilisateur = new JLabel("Nom d'utilisateur");
@@ -104,6 +116,7 @@ public class Identification extends JFrame {
 		}
 		return lblNomDutilisateur;
 	}
+
 	private JLabel getLblMotDePasse() {
 		if (lblMotDePasse == null) {
 			lblMotDePasse = new JLabel("Mot de passe");
@@ -111,69 +124,88 @@ public class Identification extends JFrame {
 		}
 		return lblMotDePasse;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setBounds(154, 95, 134, 20);
-			textField.setColumns(10);
+
+	private JTextField getTextNom() {
+		if (textNom == null) {
+			textNom = new JTextField();
+			textNom.setBounds(154, 95, 134, 20);
+			textNom.setColumns(10);
 		}
-		return textField;
+		return textNom;
 	}
+
 	private JButton getBtnValider() {
 		if (btnValider == null) {
 			btnValider = new JButton("Valider");
 			btnValider.setMnemonic('V');
-			btnValider.setBounds(116, 219, 89, 23);
-			
-			
-			btnValider.addActionListener(new ActionListener() {
+			btnValider.setBounds(116, 230, 89, 23);
 
+			btnValider.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					ControleConnexion.connecter();
 					
-					
-					ChoixDesTraitements choix = new ChoixDesTraitements();
-					choix.setLocationRelativeTo(null);
-					choix.setVisible(true);
-					choix.setResizable(false);
-					
+					if (verifier()) {
+						System.out.println(textNom.getText());
+						ControleConnexion.connecter();
+
+						ChoixDesTraitements choix = new ChoixDesTraitements();
+						choix.setLocationRelativeTo(null);
+						choix.setVisible(true);
+						choix.setResizable(false);
+					}
+
+
 				}
-			    
+
 			});
 		}
 		return btnValider;
 	}
+
 	private JButton getBtnQuitter() {
 		if (btnQuitter == null) {
 			btnQuitter = new JButton("Quitter");
 			btnQuitter.setMnemonic('Q');
-			btnQuitter.setBounds(251, 219, 89, 23);
-			
-			
-			btnQuitter.addActionListener(new ActionListener() {
+			btnQuitter.setBounds(251, 230, 89, 23);
 
+			btnQuitter.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-	
+
 					dispose();
 				}
-			    
+
 			});
 		}
-		
-		
-		
-		
+
 		return btnQuitter;
 	}
+
 	private JPasswordField getPasswordField() {
 		if (passwordField == null) {
 			passwordField = new JPasswordField();
 			passwordField.setBounds(154, 120, 134, 20);
 		}
 		return passwordField;
+	}
+	
+	private Boolean verifier() {
+		
+		Boolean accept = false;
+		
+		
+		String passText = new String(passwordField.getPassword());
+		if (textNom.getText().equals(username)&& passText.equals(password)) {
+			accept=true;
+			System.out.println("ACCEPTED");
+		}else {
+			JOptionPane.showMessageDialog(null, "Mauvais Nom d'utilisateur et/ou Mot de passe", "Erreur", JOptionPane.WARNING_MESSAGE);
+		}
+		
+		
+		return accept;
+		
 	}
 }
