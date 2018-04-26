@@ -116,7 +116,7 @@ public class AlbumsFrame extends JFrame {
 					textField_2.setText(String.valueOf(album.getAnnee()));
 					textField_3.setText(album.getMaison());
 					textField_4.setText(String.valueOf(album.getPrix() + " $"));
-					textField_5.setText(String.valueOf(album.getNumeroArtiste()));
+					textField_5.setText(gestionAlbums.getNomArtiste(album.getNumeroArtiste()));
 					
 					String image = album.getImage();
 					try {

@@ -131,26 +131,22 @@ public class GestionAlbums {
 	public String getNomArtiste(int numArtiste) {
 		
 
-		String requete = "SELECT * FROM Artiste WHERE numero = " + numArtiste;
+		String requete = "SELECT * FROM Artistes WHERE numero = " + numArtiste;
+		String nom = "";
 		
 		try(Statement statement = connexion.createStatement();
 				ResultSet jeuResultat= statement.executeQuery(requete)){
 			
 			while (jeuResultat.next()) {				
-				String numero = jeuResultat.getString("numero");
-				String nom = jeuResultat.getString("nom");
-				String membre = jeuResultat.getString("Membre");
-				String photo = jeuResultat.getString("photo");
-				
-				 
+				nom = jeuResultat.getString("nom");						 
 		}
 			
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 	
-		return "";
+		return nom;
 		
 	}
 
