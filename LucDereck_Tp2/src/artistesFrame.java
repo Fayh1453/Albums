@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -58,7 +59,6 @@ public class artistesFrame extends JFrame {
 	private JList<Albums> list;
 	private JScrollPane scrollPane;
 	private JButton btnConfirmer;
-	private JTextField textField_2;
 	private JButton btnImage;
 
 	
@@ -82,6 +82,19 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getPanel_2());
 		btnConfirmer.setVisible(false);
 	}
+	public JTable setArtistesTable(ArrayList<Artistes> liste) {
+		
+		ModeleArtistes modeleArtistes= new ModeleArtistes(liste);
+		artistesTable.setModel(modeleArtistes);
+		
+		
+		
+		return artistesTable;
+		
+		
+		
+		
+	}
 	private JTable getArtistesTable() {
 	
 			
@@ -101,8 +114,6 @@ public class artistesFrame extends JFrame {
 						numLigne = artistesTable.getSelectedRow();
 						Artistes artiste = modeleArtistes.getElement(numLigne);
 
-						artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
-						
 						btnConfirmer.setVisible(false);
 				
 
@@ -176,7 +187,6 @@ public class artistesFrame extends JFrame {
 			panelListeAlbums.add(getLblImageAlbum());
 			panelListeAlbums.add(getList_1());
 			panelListeAlbums.add(getBtnConfirmer());
-			panelListeAlbums.add(getTextField_2());
 			panelListeAlbums.add(getBtnImage());
 		}
 		return panelListeAlbums;
@@ -234,11 +244,11 @@ public class artistesFrame extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					RechercheArtistes recherche = new RechercheArtistes();
+					RechercheArtistes recherche = new RechercheArtistes(artistesFrame.this);
+					recherche.setModal(true);
 					recherche.setLocationRelativeTo(null);
 					recherche.setVisible(true);
 					recherche.setResizable(false);
-					recherche.setModal(true);
 				}
 				
 			});
@@ -365,14 +375,6 @@ public class artistesFrame extends JFrame {
 			btnConfirmer.setBounds(25, 198, 129, 23);
 		}
 		return btnConfirmer;
-	}
-	private JTextField getTextField_2() {
-		if (textField_2 == null) {
-			textField_2 = new JTextField();
-			textField_2.setColumns(10);
-			textField_2.setBounds(91, 167, 90, 20);
-		}
-		return textField_2;
 	}
 	private JButton getBtnImage() {
 		if (btnImage == null) {

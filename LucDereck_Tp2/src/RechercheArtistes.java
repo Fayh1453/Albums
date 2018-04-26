@@ -10,6 +10,8 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class RechercheArtistes extends JDialog {
 
@@ -21,26 +23,19 @@ public class RechercheArtistes extends JDialog {
 	private JPanel panel;
 	private JLabel lblNumroDeLartiste;
 	private JLabel lblNomDeLartiste;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textNum;
+	private JTextField textNom;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			RechercheArtistes dialog = new RechercheArtistes();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	/**
 	 * Create the dialog.
+	 * @param artistesFrame 
 	 */
-	public RechercheArtistes() {
+	public RechercheArtistes(artistesFrame artistesFrame) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RechercheArtistes.class.getResource("/Images/recherche.png")));
 		setTitle("Rechercher un artiste");
 		setBounds(100, 100, 327, 172);
@@ -58,14 +53,38 @@ public class RechercheArtistes extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				
+				
+				okButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						GestionArtiste temp = new GestionArtiste();
+						
+						artistesFrame.setArtistesTable(temp.rechercherArtistesBD(textNum.getText(), textNom.getText()));
+						dispose();
+					}
+					
+				});
+				
+		
 			}
 			{
 				JButton cancelButton = new JButton("Annuler");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				cancelButton.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+					
+				});
 			}
 		}
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -75,8 +94,8 @@ public class RechercheArtistes extends JDialog {
 			panel.setLayout(null);
 			panel.add(getLblNumroDeLartiste());
 			panel.add(getLblNomDeLartiste());
-			panel.add(getTextField());
-			panel.add(getTextField_1());
+			panel.add(getTextNum());
+			panel.add(getTextNom());
 		}
 		return panel;
 	}
@@ -94,20 +113,20 @@ public class RechercheArtistes extends JDialog {
 		}
 		return lblNomDeLartiste;
 	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setBounds(128, 8, 151, 20);
-			textField.setColumns(10);
+	private JTextField getTextNum() {
+		if (textNum == null) {
+			textNum = new JTextField();
+			textNum.setBounds(128, 8, 151, 20);
+			textNum.setColumns(10);
 		}
-		return textField;
+		return textNum;
 	}
-	private JTextField getTextField_1() {
-		if (textField_1 == null) {
-			textField_1 = new JTextField();
-			textField_1.setColumns(10);
-			textField_1.setBounds(128, 40, 151, 20);
+	private JTextField getTextNom() {
+		if (textNom == null) {
+			textNom = new JTextField();
+			textNom.setColumns(10);
+			textNom.setBounds(128, 40, 151, 20);
 		}
-		return textField_1;
+		return textNom;
 	}
 }

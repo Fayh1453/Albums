@@ -156,6 +156,34 @@ public class GestionArtiste {
 		return liste;
 		
 	}
+	
+	public ArrayList<Artistes> rechercherArtistesBD(String numRec, String nomRec) {
+		
+		ArrayList<Artistes> liste = new ArrayList<>();
+
+		String requete = "SELECT * FROM Artistes WHERE numero LIKE '%"+numRec+"%' AND nom LIKE '%"+ nomRec+"%'"; 
+		
+		
+		try(Statement statement = connexion.createStatement();
+				ResultSet jeuResultat= statement.executeQuery(requete)){
+			
+			while (jeuResultat.next()) {				
+					String numero = jeuResultat.getString("numero");
+					String nom = jeuResultat.getString("nom");
+					String membre = jeuResultat.getString("Membre");
+					String photo = jeuResultat.getString("photo");
+					
+					liste.add(new Artistes(Integer.parseInt(numero), nom, (membre.equals("1")), photo));	
+			}
+			
+			
+		}catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+
+		return liste;
+	
+	}
 
 
 }
