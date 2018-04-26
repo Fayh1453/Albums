@@ -30,6 +30,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ListSelectionModel;
 
 public class artistesFrame extends JFrame {
 
@@ -91,6 +92,10 @@ public class artistesFrame extends JFrame {
 						int numLigne;
 						numLigne = artistesTable.getSelectedRow();
 						Artistes artiste = modeleArtistes.getElement(numLigne);
+
+				artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+				artistesTable.getColumnModel().getColumn(2).setCellRenderer(new RendererIcon());
+
 						
 						textField.setText(String.valueOf(artiste.getNumero()));
 						textField_1.setText(String.valueOf(artiste.getNom()));
