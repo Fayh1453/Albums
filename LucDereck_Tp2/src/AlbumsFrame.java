@@ -114,17 +114,11 @@ public class AlbumsFrame extends JFrame {
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
-			tableAlbums.setModel(new DefaultTableModel(
-				new Object[][] {
-					{"Album 1", "01-25-1985"},
-					{"Album 2", "01-15-2006"},
-					{"Album 3", "15-22-2010"},
-				},
-				new String[] {
-					"Albums", "Date de Sortie"
-				}
-			));
-		}
+			GestionAlbums gestionAlbums = new GestionAlbums();
+			tableAlbums.setModel(new ModeleAlbums(gestionAlbums.getListeAlbums()));
+					
+			}
+		
 		return tableAlbums;
 	}
 	private JScrollPane getScrollPane() {

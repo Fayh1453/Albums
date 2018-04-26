@@ -83,56 +83,17 @@ public class artistesFrame extends JFrame {
 		contentPane.add(getPanel_2());
 	}
 	private JTable getArtistesTable() {
-		if (artistesTable == null) {
-			Icon membre = new ImageIcon("C:\\Users\\Luc\\Tp2\\LucDereck_Tp2\\bin\\Images\\member.gif");
-			artistesTable = new JTable();
-			artistesTable.setColumnSelectionAllowed(true);
-			artistesTable.setCellSelectionEnabled(true);
-
-			Object[][] data ={	
-					{"1","Céline Dion", membre},
-					{"2","Patrick Norman"},
-					{"3","Martin Stevens", membre},	
-					{"4","Coeur de Pirate"},
-					{"4","Elvis Presley"}
-			};
+	
 			
-			
-				/*for (Artistes art: liste.getListeArtistes()) {
-					
-					data[0][number]=art.getNumero();
-					data[1][number]=art.getNom();
-					if (art.getMembre())
-					{data[2][number]=art.getMembre();}
-					
-					number++;
-				};*/
-			
-			String[] columnNames = {"Num\u00E9ro", "Nom", "Membre"};
-			
-			artistesTable.setModel(new DefaultTableModel(data, columnNames) {
-				
-				public Class getColumnClass(int column)
-				{
-					return getValueAt(2,column).getClass();
+			if (artistesTable == null) {
+				artistesTable = new JTable();
+				GestionArtiste gestionArtiste = new GestionArtiste();
+				artistesTable.setModel(new ModeleArtistes(gestionArtiste.getListeArtistes()));
+						
 				}
-				
-				
-				
-			}
-					);
 			
-			artistesTable.getColumnModel().getColumn(0).setResizable(false);
-			artistesTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-			artistesTable.getColumnModel().getColumn(0).setMinWidth(50);
-			artistesTable.getColumnModel().getColumn(0).setMaxWidth(50);
-			artistesTable.getColumnModel().getColumn(1).setResizable(false);
-			artistesTable.getColumnModel().getColumn(1).setMinWidth(75);
-			artistesTable.getColumnModel().getColumn(2).setResizable(false);
-			artistesTable.getColumnModel().getColumn(2).setMinWidth(75);
-			artistesTable.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		}
-		return artistesTable;
+			return artistesTable;
+				
 	}
 	private JPanel getPanelListeAlbums() {
 		if (panelListeAlbums == null) {
