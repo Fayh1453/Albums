@@ -36,8 +36,9 @@ public class Identification extends JFrame {
 	private JButton btnValider;
 	private JButton btnQuitter;
 	private JPasswordField passwordField;
-	private String username = "";
-	private String password = "";
+	private String username = "Root";
+	private String password = "Password";
+	private JLabel lblDebugUsernameRoot;
 
 	/**
 	 * Launch the application.
@@ -85,6 +86,7 @@ public class Identification extends JFrame {
 			panel.add(getLblMotDePasse());
 			panel.add(getTextNom());
 			panel.add(getPasswordField());
+			panel.add(getLblDebugUsernameRoot());
 		}
 		return panel;
 	}
@@ -214,5 +216,13 @@ public class Identification extends JFrame {
 		
 		return accept;
 		
+	}
+	private JLabel getLblDebugUsernameRoot() {
+		if (lblDebugUsernameRoot == null) {
+			lblDebugUsernameRoot = new JLabel("Debug-- Username: Root Password: Password");
+			lblDebugUsernameRoot.setFont(new Font("Tahoma", Font.ITALIC, 11));
+			lblDebugUsernameRoot.setBounds(10, 152, 366, 14);
+		}
+		return lblDebugUsernameRoot;
 	}
 }
