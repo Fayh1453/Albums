@@ -107,6 +107,7 @@ public class ArtistesFrame extends JFrame {
 				
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
+					
 					public void mousePressed(MouseEvent e) {
 						button_3.setEnabled(true);
 						button_1.setEnabled(true);
@@ -139,7 +140,14 @@ public class ArtistesFrame extends JFrame {
 						
 						list.setVisible(true);
 						list.setModel(gestionArtiste.getListeAlbum(artiste.getNumero()));
+						
+						
+						if ( e.getClickCount() == 2 ){
+							modifier();
+						}
 					}
+					
+			
 
 					
 					

@@ -164,6 +164,10 @@ public class AlbumsFrame extends JFrame {
 						lblNewLabel.setIcon(null);
 						lblNewLabel.setText("Image non disponible");
 					}
+					
+					if ( e.getClickCount() == 2 ){
+						modifier();
+					}
 
 				}
 			});
