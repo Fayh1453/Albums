@@ -53,6 +53,7 @@ public class Identification extends JFrame {
 		contentPane.add(getPanel());
 		contentPane.add(getBtnValider());
 		contentPane.add(getBtnQuitter());
+		getRootPane().setDefaultButton(btnValider);
 	}
 
 	private JPanel getPanel() {
