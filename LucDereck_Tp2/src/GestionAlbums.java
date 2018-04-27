@@ -94,7 +94,7 @@ public class GestionAlbums {
 			statement.executeUpdate(requete);
 			listeAlbums.remove(album);
 			boolSupp = true;
-			
+			JOptionPane.showMessageDialog(null, "L'album " + album.getTitre() + " à \u00E9t\u00E9 supprim\u00E9" ,"Suppression",JOptionPane.OK_OPTION);
 		} catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la suppression de l'album: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}

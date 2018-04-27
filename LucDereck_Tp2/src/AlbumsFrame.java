@@ -379,6 +379,7 @@ public class AlbumsFrame extends JFrame {
 	}
 
 	private void modifier() {
+		try {
 		textField.setEditable(false);
 		btnImage.setVisible(true);
 		lblArtiste.setText("# Artiste");
@@ -395,6 +396,10 @@ public class AlbumsFrame extends JFrame {
 		btnConfirmer.addMouseListener(mouseConf);
 		
 		btnConfirmer.setVisible(true);
+		}
+		catch (Exception e) {
+			
+		}
 		
 	}
 	private JButton getBtnSupprimer() {

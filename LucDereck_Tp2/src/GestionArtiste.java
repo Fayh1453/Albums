@@ -89,6 +89,7 @@ public class GestionArtiste {
 			statement.executeUpdate(requete);
 			listeArtistes.remove(artiste);
 			boolSupp = true;
+			JOptionPane.showMessageDialog(null, "L'artiste " + artiste.getNom() + " à \u00E9t\u00E9 supprim\u00E9" ,"Suppression",JOptionPane.OK_OPTION);
 			
 		} catch (SQLException sqle) {
 			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la suppression de l'artiste: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
