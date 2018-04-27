@@ -354,7 +354,7 @@ public class ArtistesFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				if (gestionArtiste.confirmerAjout(frame)) {
+				if ( (gestionArtiste.confirmerAjout(frame)) ) {
 					effacerInfos();
 				}
 					
@@ -388,7 +388,7 @@ public class ArtistesFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				if ( gestionArtiste.confirmerModif(frame)) {
+				if ( (gestionArtiste.confirmerModif(frame)) ) {
 					effacerInfos();
 				};
 			}
@@ -465,7 +465,7 @@ public class ArtistesFrame extends JFrame {
 			btnImage = new JButton("Image");
 			btnImage.setFont(new Font("Tahoma", Font.PLAIN, 8));
 			btnImage.setBounds(25, 166, 63, 23);
-			
+			btnImage.removeAll();
 			btnImage.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {

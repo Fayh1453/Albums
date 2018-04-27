@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,6 +54,7 @@ public class AlbumsFrame extends JFrame {
 	private JButton btnConfirmer;
 	private JLabel lblGenre;
 	private JTextField textField_6;
+	private MouseListener mouseConf;
 
 	/**
 	 * Create the frame.
@@ -317,15 +319,22 @@ public class AlbumsFrame extends JFrame {
 		btnModifier.setEnabled(false);
 		btnSupprimer.setEnabled(false);
 		btnImage.setVisible(true);
-		btnConfirmer.setVisible(true);
-
-		btnConfirmer.setVisible(true);
-		btnConfirmer.addMouseListener(new MouseAdapter() {
+		
+		btnConfirmer.removeMouseListener(mouseConf);
+		
+		mouseConf = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				gestionAlbums.confirmerAjout(AlbumsFrame.this);
+				
+				if (gestionAlbums.confirmerAjout(AlbumsFrame.this)) {
+					effacerInfos();
+				}	
 			}
-		});
+		};
+		btnConfirmer.addMouseListener(mouseConf);
+		
+		btnConfirmer.setVisible(true);
+		
 	}
 
 	private void ajouterImage() {
@@ -367,19 +376,23 @@ public class AlbumsFrame extends JFrame {
 	}
 
 	private void modifier() {
-		btnConfirmer.setVisible(true);
 		textField.setEditable(false);
 		btnImage.setVisible(true);
-		btnConfirmer.setVisible(true);
 		lblArtiste.setText("# Artiste");
 		textField_5.setText(String.valueOf(album.getNumeroArtiste()));
-
-		btnConfirmer.addMouseListener(new MouseAdapter() {
+		
+		
+		mouseConf = new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) {		
 				gestionAlbums.confirmerModif(AlbumsFrame.this);
+			
 			}
-		});
+		};
+		btnConfirmer.addMouseListener(mouseConf);
+		
+		btnConfirmer.setVisible(true);
+		
 	}
 	private JButton getBtnSupprimer() {
 		if (btnSupprimer == null) {

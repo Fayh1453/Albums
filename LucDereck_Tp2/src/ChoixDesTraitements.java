@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Desktop;
 
 import javax.swing.border.LineBorder;
+
+import Images.GestionQuitter;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -31,21 +34,6 @@ public class ChoixDesTraitements extends JFrame {
 	private JLabel lblChoixDesTraitements;
 	private JButton btnAide;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChoixDesTraitements frame = new ChoixDesTraitements();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -89,7 +77,8 @@ public class ChoixDesTraitements extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
 					ArtistesFrame artistes = new ArtistesFrame();
-
+					
+					GestionQuitter.confirmerQuitter(artistes);
 					artistes.setLocationRelativeTo(null);
 					artistes.setVisible(true);
 					artistes.setResizable(false);
@@ -116,6 +105,7 @@ public class ChoixDesTraitements extends JFrame {
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
 					AlbumsFrame albums = new AlbumsFrame();
+					GestionQuitter.confirmerQuitter(albums);
 					albums.setLocationRelativeTo(null);
 					albums.setVisible(true);
 					albums.setResizable(false);

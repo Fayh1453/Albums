@@ -3,8 +3,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Locale;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
@@ -189,7 +187,11 @@ public class GestionAlbums {
 	}
 	
 
-	public void confirmerModif(AlbumsFrame albumsFrame) {
+	public boolean confirmerModif(AlbumsFrame albumsFrame) {
+		boolean changement = false;
+		String fileName;
+		
+		try {
 		int numero = Integer.parseInt(albumsFrame.getTextField().getText());
 		String titre = albumsFrame.getTextField_1().getText();
 		int annee = Integer.parseInt(albumsFrame.getTextField_2().getText());
@@ -198,8 +200,8 @@ public class GestionAlbums {
 		int numeroArtiste = Integer.parseInt(albumsFrame.getTextField_5().getText());
 		String genre = albumsFrame.getTextField_6().getText();
 
-		String fileName;
-		try {
+		
+		
 			String iconfilename = albumsFrame.getLblNewLabel().getIcon().toString();
 			fileName = iconfilename.substring(iconfilename.lastIndexOf("/") + 1);
 
@@ -207,17 +209,23 @@ public class GestionAlbums {
 
 			modifierAlbumsBD(albumMod);
 			albumsFrame.setAlbumsTable(getListeAlbums());
+			
+			changement = true;
 
 		} catch (Exception e) {
 			fileName = "";
 			JOptionPane.showMessageDialog(null,
 					"Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image",
-					"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+					"Modifier un album", JOptionPane.ERROR_MESSAGE);
 		}
+		
+		return changement;
 		
 	}
 
-	public void confirmerAjout(AlbumsFrame albumsFrame) {
+	public boolean confirmerAjout(AlbumsFrame albumsFrame) {
+		boolean changement = false;
+		
 		try {
 			int numero = Integer.parseInt(albumsFrame.getTextField().getText());
 			String titre = albumsFrame.getTextField_1().getText();
@@ -236,12 +244,16 @@ public class GestionAlbums {
 			albumsFrame.setAlbumsTable(getListeAlbums());
 
 			albumsFrame.effacerInfos();
+			
+			changement = true;
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image",
 					"Ajouté un album", JOptionPane.ERROR_MESSAGE);
 		}
+		
+		return changement;
 		
 	}
 	

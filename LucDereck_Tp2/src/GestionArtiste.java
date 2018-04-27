@@ -1,13 +1,8 @@
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import com.mysql.jdbc.Connection;
 
 public class GestionArtiste {
@@ -222,8 +217,6 @@ public class GestionArtiste {
 			Artistes artiste = new Artistes(numero,nom,membre,fileName);
 			
 			ajouterArtistesBD(artiste);
-
-			
 			frame.setArtistesTable(getListeArtistes());
 			
 			changement = true;
@@ -239,6 +232,8 @@ public class GestionArtiste {
 	
 	public boolean confirmerModif(ArtistesFrame frame) {
 		boolean changement = false;
+		String fileName;
+		
 		try {
 		int numero = Integer.parseInt(frame.getTextField().getText());
 		
@@ -251,7 +246,7 @@ public class GestionArtiste {
 		}
 		
 		String iconfilename = frame.getLblImageAlbum().getIcon().toString();
-		String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+		fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
 		
 		
 			Artistes artiste = new Artistes(numero,nom,membre,fileName);
@@ -261,6 +256,7 @@ public class GestionArtiste {
 			
 			changement = true;
 		} catch (Exception e) {
+			fileName = "";
 			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un artiste : Assurez vous de bien remplir les informations et l'image" ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
 		}
 

@@ -16,6 +16,9 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import Images.GestionQuitter;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPasswordField;
@@ -151,6 +154,7 @@ public class Identification extends JFrame {
 						ControleConnexion.connecter();
 
 						ChoixDesTraitements choix = new ChoixDesTraitements();
+						GestionQuitter.confirmerQuitter(choix);
 						choix.setLocationRelativeTo(null);
 						choix.setVisible(true);
 						choix.setResizable(false);
