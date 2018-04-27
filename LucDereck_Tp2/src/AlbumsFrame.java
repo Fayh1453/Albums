@@ -1,11 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +11,6 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -57,7 +54,6 @@ public class AlbumsFrame extends JFrame {
 	private JLabel lblGenre;
 	private JTextField textField_6;
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -77,6 +73,7 @@ public class AlbumsFrame extends JFrame {
 		btnImage.setVisible(false);
 		btnConfirmer.setVisible(false);
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -92,6 +89,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return panel;
 	}
+
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -119,13 +117,14 @@ public class AlbumsFrame extends JFrame {
 		}
 		return panel_1;
 	}
+
 	public JTable setAlbumsTable(ArrayList<Albums> liste) {
 		modeleAlbum = new ModeleAlbums(liste);
-		tableAlbums.setModel(modeleAlbum);		
-		
-		return tableAlbums;	
+		tableAlbums.setModel(modeleAlbum);
+
+		return tableAlbums;
 	}
-	
+
 	private JTable getTableAlbums() {
 		if (tableAlbums == null) {
 			tableAlbums = new JTable();
@@ -134,7 +133,7 @@ public class AlbumsFrame extends JFrame {
 			modeleAlbum = new ModeleAlbums(gestionAlbums.getListeAlbums());
 
 			tableAlbums.setModel(modeleAlbum);
-			
+
 			tableAlbums.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					lblArtiste.setText("Artiste");
@@ -143,11 +142,11 @@ public class AlbumsFrame extends JFrame {
 					btnSupprimer.setEnabled(true);
 					btnImage.setVisible(false);
 					btnConfirmer.setVisible(false);
-					
+
 					int numLigne;
 					numLigne = tableAlbums.getSelectedRow();
 					album = modeleAlbum.getElement(numLigne);
-					
+
 					textField.setText(String.valueOf(album.getNumero()));
 					textField_1.setText(album.getTitre());
 					textField_2.setText(String.valueOf(album.getAnnee()));
@@ -155,25 +154,23 @@ public class AlbumsFrame extends JFrame {
 					textField_4.setText(String.valueOf(album.getPrix()));
 					textField_5.setText(gestionAlbums.getNomArtiste(album.getNumeroArtiste()));
 					textField_6.setText(album.getGenre());
-					
+
 					String image = album.getImage();
 					try {
-					lblNewLabel.setIcon(new ImageIcon(AlbumsFrame.class.getResource("/Images/" + image)));
+						lblNewLabel.setIcon(new ImageIcon(AlbumsFrame.class.getResource("/Images/" + image)));
 					} catch (Exception error) {
 						lblNewLabel.setIcon(null);
 						lblNewLabel.setText("Image non disponible");
 					}
-					
-					
-					
-					
+
 				}
 			});
-					
-			}
-		
+
+		}
+
 		return tableAlbums;
 	}
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -182,7 +179,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return scrollPane;
 	}
-	private JLabel getLblNewLabel() {
+
+	public JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("New label");
 			lblNewLabel.setIcon(null);
@@ -191,6 +189,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblNewLabel;
 	}
+
 	private JLabel getLblTire() {
 		if (lblTire == null) {
 			lblTire = new JLabel("Num\u00E9ro");
@@ -198,6 +197,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblTire;
 	}
+
 	private JLabel getLblTitre() {
 		if (lblTitre == null) {
 			lblTitre = new JLabel("Titre");
@@ -205,6 +205,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblTitre;
 	}
+
 	private JLabel getLblAnnee() {
 		if (lblAnnee == null) {
 			lblAnnee = new JLabel("Ann\u00E9e");
@@ -212,6 +213,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblAnnee;
 	}
+
 	private JLabel getLblMaison() {
 		if (lblMaison == null) {
 			lblMaison = new JLabel("Maison");
@@ -219,6 +221,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblMaison;
 	}
+
 	private JLabel getLblPrix() {
 		if (lblPrix == null) {
 			lblPrix = new JLabel("Prix");
@@ -226,6 +229,7 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblPrix;
 	}
+
 	private JLabel getLblArtiste() {
 		if (lblArtiste == null) {
 			lblArtiste = new JLabel("Artiste");
@@ -233,7 +237,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return lblArtiste;
 	}
-	private JTextField getTextField() {
+
+	public JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setBounds(77, 14, 112, 20);
@@ -241,7 +246,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField;
 	}
-	private JTextField getTextField_1() {
+
+	public JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
 			textField_1.setBounds(77, 46, 112, 20);
@@ -249,7 +255,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField_1;
 	}
-	private JTextField getTextField_2() {
+
+	public JTextField getTextField_2() {
 		if (textField_2 == null) {
 			textField_2 = new JTextField();
 			textField_2.setBounds(77, 81, 112, 20);
@@ -257,7 +264,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField_2;
 	}
-	private JTextField getTextField_3() {
+
+	public JTextField getTextField_3() {
 		if (textField_3 == null) {
 			textField_3 = new JTextField();
 			textField_3.setBounds(77, 112, 112, 20);
@@ -265,7 +273,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField_3;
 	}
-	private JTextField getTextField_4() {
+
+	public JTextField getTextField_4() {
 		if (textField_4 == null) {
 			textField_4 = new JTextField();
 			textField_4.setBounds(77, 143, 112, 20);
@@ -273,7 +282,8 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField_4;
 	}
-	private JTextField getTextField_5() {
+
+	public JTextField getTextField_5() {
 		if (textField_5 == null) {
 			textField_5 = new JTextField();
 			textField_5.setBounds(77, 174, 112, 20);
@@ -281,84 +291,52 @@ public class AlbumsFrame extends JFrame {
 		}
 		return textField_5;
 	}
+
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Ajouter");
 			btnNewButton.setBounds(54, 53, 113, 23);
-			
+
 			btnNewButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					ajouter();
 				}
-				
+
 			});
 		}
 		return btnNewButton;
 	}
-	
+
 	private void ajouter() {
-		
+
 		effacerInfos();
 		lblArtiste.setText("#Artiste");
-		
-		textField.setEditable(true);	
+
+		textField.setEditable(true);
 		btnModifier.setEnabled(false);
 		btnSupprimer.setEnabled(false);
 		btnImage.setVisible(true);
 		btnConfirmer.setVisible(true);
 
-		
-		
 		btnConfirmer.setVisible(true);
 		btnConfirmer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				confirmerAjout();
+				gestionAlbums.confirmerAjout(AlbumsFrame.this);
 			}
 		});
 	}
-	
-	private void confirmerAjout() {
-		///////////////////
-		try {
-			int numero = Integer.parseInt(textField.getText());			
-			String titre = textField_1.getText();
-			int annee = Integer.parseInt(textField_2.getText());
-			String maison =  textField_3.getText();
-			double prix =  Double.parseDouble(textField_4.getText());
-			int numeroArtiste = Integer.parseInt(textField_5.getText());
-			String genre = textField_6.getText();
-			String iconfilename = lblNewLabel.getIcon().toString();
-			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
-			
 
-			
-			album = new Albums(numero,titre,prix,genre,annee,maison,fileName,numeroArtiste);
-			
-			gestionAlbums.ajouterAlbumsBD(album);
-			
-			setAlbumsTable(gestionAlbums.getListeAlbums());
-
-			
-			effacerInfos();
-			
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image"
-					,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	
 	private void ajouterImage() {
 		//////////////////////
 		String chemin = GestionFichier.Ouvrir(this);
-		lblNewLabel.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + chemin)));
+		lblNewLabel.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + chemin)));
 
-		
 	}
-	
-	private void effacerInfos() {
-		
+
+	public void effacerInfos() {
+
 		tableAlbums.clearSelection();
 		textField.setText("");
 		textField_1.setText("");
@@ -370,28 +348,24 @@ public class AlbumsFrame extends JFrame {
 		lblNewLabel.setIcon(null);
 		lblNewLabel.setText("Choisir une image");
 
-		
-		
 	}
-	
+
 	private JButton getBtnModifier() {
 		if (btnModifier == null) {
 			btnModifier = new JButton("Modifier");
 			btnModifier.setBounds(54, 106, 113, 23);
-			
-			
+
 			btnModifier.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					modifier();
 				}
-				
+
 			});
 		}
 		return btnModifier;
 	}
-	
-	
+
 	private void modifier() {
 		btnConfirmer.setVisible(true);
 		textField.setEditable(false);
@@ -400,47 +374,13 @@ public class AlbumsFrame extends JFrame {
 		lblArtiste.setText("# Artiste");
 		textField_5.setText(String.valueOf(album.getNumeroArtiste()));
 
-		
 		btnConfirmer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				confirmerModif();
+				gestionAlbums.confirmerModif(AlbumsFrame.this);
 			}
 		});
 	}
-	
-	
-	private void confirmerModif() {
-		
-		String fileName;
-		try {
-		int numero = Integer.parseInt(textField.getText());			
-		String titre = textField_1.getText();
-		int annee = Integer.parseInt(textField_2.getText());
-		String maison =  textField_3.getText();
-		double prix =  Double.parseDouble(textField_4.getText());
-		int numeroArtiste = Integer.parseInt(textField_5.getText());
-		String genre = textField_6.getText();
-
-		
-		
-		String iconfilename = lblNewLabel.getIcon().toString();
-		fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
-
-		album = new Albums(numero,titre,prix,genre,annee,maison,fileName,numeroArtiste);
-		
-		gestionAlbums.modifierAlbumsBD(album);
-		setAlbumsTable(gestionAlbums.getListeAlbums());
-		
-		} catch (Exception e) {
-			fileName = "";
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image" 
-					,"Ajouté un album", JOptionPane.ERROR_MESSAGE);
-		}
-		
-	}
-	
-	
 	private JButton getBtnSupprimer() {
 		if (btnSupprimer == null) {
 			btnSupprimer = new JButton("Supprimer");
@@ -449,36 +389,29 @@ public class AlbumsFrame extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					
-					if (album!=null) {
-						
+
+					if (album != null) {
+
 						int option = JOptionPane.showConfirmDialog(null,
-								"Voulez-vous vraiment supprimer "+album.getTitre()+"?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-						
-						if (option==JOptionPane.YES_OPTION) {
+								"Voulez-vous vraiment supprimer " + album.getTitre() + "?", "Confirmation",
+								JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+						if (option == JOptionPane.YES_OPTION) {
 							gestionAlbums.supprimerAlbumBD(album);
 							setAlbumsTable(gestionAlbums.getListeAlbums());
 							effacerInfos();
 
 						}
-						
-						
-						
+
 					}
-					
+
 				}
-				
-				
-				
-				
-				
-				
-				
-				
+
 			});
 		}
 		return btnSupprimer;
 	}
+
 	private JButton getBtnRechercher() {
 		if (btnRechercher == null) {
 			btnRechercher = new JButton("Rechercher");
@@ -493,29 +426,29 @@ public class AlbumsFrame extends JFrame {
 					recherche.setVisible(true);
 					recherche.setResizable(false);
 				}
-				
+
 			});
 		}
 		return btnRechercher;
 	}
+
 	private JButton getBtnQuitter() {
 		if (btnQuitter == null) {
 			btnQuitter = new JButton("Quitter");
 			btnQuitter.setBounds(54, 268, 113, 23);
-			
-			btnQuitter.addActionListener(new ActionListener() {
 
+			btnQuitter.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-	
+
 					dispose();
 					ChoixDesTraitements choix = new ChoixDesTraitements();
 					choix.setLocationRelativeTo(null);
 					choix.setVisible(true);
 					choix.setResizable(false);
 				}
-			    
+
 			});
 		}
 		return btnQuitter;
@@ -534,22 +467,33 @@ public class AlbumsFrame extends JFrame {
 		}
 		return btnImage;
 	}
+
 	private JButton getBtnConfirmer() {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
 			btnConfirmer.setBounds(247, 197, 93, 23);
-			
+
+			btnImage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouterImage();
+				}
+			});
+
+
 		}
 		return btnConfirmer;
 	}
-	private JLabel getLblGenre() {
+
+	public JLabel getLblGenre() {
 		if (lblGenre == null) {
 			lblGenre = new JLabel("Genre");
 			lblGenre.setBounds(10, 206, 46, 14);
 		}
 		return lblGenre;
 	}
-	private JTextField getTextField_6() {
+
+	public JTextField getTextField_6() {
 		if (textField_6 == null) {
 			textField_6 = new JTextField();
 			textField_6.setBounds(77, 205, 112, 20);

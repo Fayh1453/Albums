@@ -33,9 +33,9 @@ public class RechercheArtistes extends JDialog {
 
 	/**
 	 * Create the dialog.
-	 * @param artistesFrame 
+	 * @param ArtistesFrame 
 	 */
-	public RechercheArtistes(artistesFrame artistesFrame) {
+	public RechercheArtistes(ArtistesFrame ArtistesFrame) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RechercheArtistes.class.getResource("/Images/recherche.png")));
 		setTitle("Rechercher un artiste");
 		setBounds(100, 100, 327, 172);
@@ -61,7 +61,7 @@ public class RechercheArtistes extends JDialog {
 					public void actionPerformed(ActionEvent arg0) {
 						GestionArtiste temp = new GestionArtiste();
 						
-						artistesFrame.setArtistesTable(temp.rechercherArtistesBD(textNum.getText(), textNom.getText()));
+						ArtistesFrame.setArtistesTable(temp.rechercherArtistesBD(textNum.getText(), textNom.getText()));
 						dispose();
 					}
 					

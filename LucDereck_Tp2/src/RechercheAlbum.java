@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 
 public class RechercheAlbum extends JDialog {
 
@@ -106,6 +107,7 @@ public class RechercheAlbum extends JDialog {
 	private JLabel getLblNumroDeLartiste() {
 		if (lblNumroDeLartiste == null) {
 			lblNumroDeLartiste = new JLabel("Num\u00E9ro de l'album :");
+			lblNumroDeLartiste.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			lblNumroDeLartiste.setBounds(10, 11, 114, 14);
 		}
 		return lblNumroDeLartiste;
@@ -113,6 +115,7 @@ public class RechercheAlbum extends JDialog {
 	private JLabel getLblNomDeLartiste() {
 		if (lblNomDeLartiste == null) {
 			lblNomDeLartiste = new JLabel("Titre de l'album :");
+			lblNomDeLartiste.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			lblNomDeLartiste.setBounds(10, 43, 114, 14);
 		}
 		return lblNomDeLartiste;
@@ -136,7 +139,8 @@ public class RechercheAlbum extends JDialog {
 	private JLabel getLblArtisteDeLalbum() {
 		if (lblArtisteDeLalbum == null) {
 			lblArtisteDeLalbum = new JLabel("Numéro d'artiste de l'album :");
-			lblArtisteDeLalbum.setBounds(10, 71, 114, 14);
+			lblArtisteDeLalbum.setFont(new Font("Tahoma", Font.PLAIN, 10));
+			lblArtisteDeLalbum.setBounds(10, 71, 151, 14);
 		}
 		return lblArtisteDeLalbum;
 	}
@@ -144,7 +148,7 @@ public class RechercheAlbum extends JDialog {
 		if (textArtiste == null) {
 			textArtiste = new JTextField();
 			textArtiste.setColumns(10);
-			textArtiste.setBounds(128, 68, 151, 20);
+			textArtiste.setBounds(171, 68, 108, 20);
 		}
 		return textArtiste;
 	}

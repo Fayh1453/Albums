@@ -205,7 +205,7 @@ public class GestionArtiste {
 	
 	}
 	
-	public boolean confirmerAjout(artistesFrame frame) {
+	public boolean confirmerAjout(ArtistesFrame frame) {
 		boolean changement = false;
 		
 		try {
@@ -239,7 +239,7 @@ public class GestionArtiste {
 	}
 	
 	
-	public boolean confirmerModif(artistesFrame frame) {
+	public boolean confirmerModif(ArtistesFrame frame) {
 		boolean changement = false;
 		try {
 		int numero = Integer.parseInt(frame.getTextField().getText());

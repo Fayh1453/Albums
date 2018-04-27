@@ -188,6 +188,62 @@ public class GestionAlbums {
 	
 	}
 	
+
+	public void confirmerModif(AlbumsFrame albumsFrame) {
+		int numero = Integer.parseInt(albumsFrame.getTextField().getText());
+		String titre = albumsFrame.getTextField_1().getText();
+		int annee = Integer.parseInt(albumsFrame.getTextField_2().getText());
+		String maison = albumsFrame.getTextField_3().getText();
+		double prix = Double.parseDouble(albumsFrame.getTextField_4().getText());
+		int numeroArtiste = Integer.parseInt(albumsFrame.getTextField_5().getText());
+		String genre = albumsFrame.getTextField_6().getText();
+
+		String fileName;
+		try {
+			String iconfilename = albumsFrame.getLblNewLabel().getIcon().toString();
+			fileName = iconfilename.substring(iconfilename.lastIndexOf("/") + 1);
+
+			Albums albumMod = new Albums(numero, titre, prix, genre, annee, maison, fileName, numeroArtiste);
+
+			modifierAlbumsBD(albumMod);
+			albumsFrame.setAlbumsTable(getListeAlbums());
+
+		} catch (Exception e) {
+			fileName = "";
+			JOptionPane.showMessageDialog(null,
+					"Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image",
+					"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+
+	public void confirmerAjout(AlbumsFrame albumsFrame) {
+		try {
+			int numero = Integer.parseInt(albumsFrame.getTextField().getText());
+			String titre = albumsFrame.getTextField_1().getText();
+			int annee = Integer.parseInt(albumsFrame.getTextField_2().getText());
+			String maison = albumsFrame.getTextField_3().getText();
+			double prix = Double.parseDouble(albumsFrame.getTextField_4().getText());
+			int numeroArtiste = Integer.parseInt(albumsFrame.getTextField_5().getText());
+			String genre = albumsFrame.getTextField_6().getText();
+			String iconfilename = albumsFrame.getLblNewLabel().getIcon().toString();
+			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/") + 1);
+
+			Albums albumMod = new Albums(numero, titre, prix, genre, annee, maison, fileName, numeroArtiste);
+
+			ajouterAlbumsBD(albumMod);
+
+			albumsFrame.setAlbumsTable(getListeAlbums());
+
+			albumsFrame.effacerInfos();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Problème rencontr\u00E9 lors de la modification d'un album: Assurez vous de bien remplir les informations et de choisir une image",
+					"Ajouté un album", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
 	
 	
 }

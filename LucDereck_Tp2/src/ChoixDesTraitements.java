@@ -88,7 +88,7 @@ public class ChoixDesTraitements extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
-					artistesFrame artistes = new artistesFrame();
+					ArtistesFrame artistes = new ArtistesFrame();
 
 					artistes.setLocationRelativeTo(null);
 					artistes.setVisible(true);
