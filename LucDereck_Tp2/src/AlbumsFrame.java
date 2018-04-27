@@ -352,7 +352,7 @@ public class AlbumsFrame extends JFrame {
 	private void ajouterImage() {
 		//////////////////////
 		String chemin = GestionFichier.Ouvrir(this);
-		lblNewLabel.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + chemin)));
+		lblNewLabel.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + chemin)));
 
 		
 	}

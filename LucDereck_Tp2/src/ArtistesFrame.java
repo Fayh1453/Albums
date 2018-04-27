@@ -35,7 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ListSelectionModel;
 import java.awt.Font;
 
-public class artistesFrame extends JFrame {
+public class ArtistesFrame extends JFrame {
 
 	/**
 	 * 
@@ -71,7 +71,7 @@ public class artistesFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public artistesFrame() {
+	public ArtistesFrame() {
 		setTitle("Gestion des artistes, Ajout, Modification, Suppression, Recherche");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 679, 493);
@@ -139,7 +139,7 @@ public class artistesFrame extends JFrame {
 						}	
 						String image = artiste.getPhoto();
 						try {
-							lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + image)));
+							lblImageAlbum.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + image)));
 						} catch (Exception error) {
 							lblImageAlbum.setIcon(null);
 							lblImageAlbum.setText("Image non disponible");
@@ -254,7 +254,7 @@ public class artistesFrame extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					RechercheArtistes recherche = new RechercheArtistes(artistesFrame.this);
+					RechercheArtistes recherche = new RechercheArtistes(ArtistesFrame.this);
 					recherche.setModal(true);
 					recherche.setLocationRelativeTo(null);
 					recherche.setVisible(true);
@@ -467,7 +467,7 @@ public class artistesFrame extends JFrame {
 	private void ajouterImage() {
 		//////////////////////
 		String chemin = GestionFichier.Ouvrir(this);
-		lblImageAlbum.setIcon(new ImageIcon(artistesFrame.class.getResource("/Images/" + chemin)));
+		lblImageAlbum.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + chemin)));
 
 		
 	}
