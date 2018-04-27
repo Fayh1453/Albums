@@ -338,7 +338,6 @@ public class AlbumsFrame extends JFrame {
 	}
 
 	private void ajouterImage() {
-		//////////////////////
 		String chemin = GestionFichier.Ouvrir(this);
 		lblNewLabel.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + chemin)));
 
@@ -471,6 +470,7 @@ public class AlbumsFrame extends JFrame {
 		if (btnImage == null) {
 			btnImage = new JButton("Image");
 			btnImage.setBounds(247, 167, 93, 23);
+			btnImage.removeAll();
 			btnImage.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {

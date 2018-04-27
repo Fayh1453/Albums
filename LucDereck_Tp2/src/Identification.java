@@ -1,14 +1,12 @@
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
@@ -16,11 +14,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
-import Images.GestionQuitter;
-
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JPasswordField;
 
 public class Identification extends JFrame {
@@ -31,7 +25,6 @@ public class Identification extends JFrame {
 	private static final long serialVersionUID = -1345081747692026013L;
 	private JPanel contentPane;
 	private JPanel panel;
-	private JLabel label;
 	private JLabel lblConnexionAuProgramme;
 	private JLabel lblNomDutilisateur;
 	private JLabel lblMotDePasse;
@@ -43,21 +36,6 @@ public class Identification extends JFrame {
 	private String password = "Password";
 	private JLabel lblDebugUsernameRoot;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Identification frame = new Identification();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -94,15 +72,6 @@ public class Identification extends JFrame {
 		return panel;
 	}
 
-	/**
-	 * @wbp.nonvisual location=101,-11
-	 */
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("New label");
-		}
-		return label;
-	}
 
 	private JLabel getLblConnexionAuProgramme() {
 		if (lblConnexionAuProgramme == null) {
@@ -171,29 +140,35 @@ public class Identification extends JFrame {
 		return btnValider;
 	}
 	
-	private void close() {
-		setVisible(false);
-		dispose();
-	}
 
 	private JButton getBtnQuitter() {
 		if (btnQuitter == null) {
 			btnQuitter = new JButton("Quitter");
 			btnQuitter.setMnemonic('Q');
 			btnQuitter.setBounds(251, 230, 89, 23);
-
-			btnQuitter.addActionListener(new ActionListener() {
+			
+			btnQuitter.addMouseListener(new MouseAdapter() {
 
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-
-					dispose();
+				public void mousePressed(MouseEvent e) {
+					
+					close();
 				}
 
 			});
 		}
 
 		return btnQuitter;
+	}
+	
+	private void close() {
+		JFrame frame = this;
+		
+        int result = JOptionPane.showConfirmDialog(frame,
+	              "Voulez-vous vraiment quitter ?", "FERMER LE PROGRAMME",
+	              JOptionPane.YES_NO_OPTION);
+	          if (result == JOptionPane.YES_OPTION)
+	            System.exit(0);         
 	}
 
 	private JPasswordField getPasswordField() {

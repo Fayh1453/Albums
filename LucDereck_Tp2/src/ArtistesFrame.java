@@ -107,7 +107,7 @@ public class ArtistesFrame extends JFrame {
 				
 				
 				artistesTable.addMouseListener(new MouseAdapter() {
-					public void mouseReleased(MouseEvent e) {
+					public void mousePressed(MouseEvent e) {
 						button_3.setEnabled(true);
 						button_1.setEnabled(true);
 						textField.setEditable(false);

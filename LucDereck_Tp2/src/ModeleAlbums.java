@@ -4,6 +4,11 @@ import javax.swing.table.AbstractTableModel;
 
 public class ModeleAlbums extends AbstractTableModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ArrayList<Albums> lesDonnees;
 
 	private final String[] lesTitres = { "Numéro", "Titre", "Ann\u00E9e", "Genre" };

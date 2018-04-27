@@ -1,6 +1,4 @@
 import java.awt.Component;
-import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;

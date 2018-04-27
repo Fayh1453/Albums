@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Artistes {
 	private int numero;
 	private String nom;
