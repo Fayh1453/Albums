@@ -124,15 +124,12 @@ public class GestionArtiste {
 			
 			for ( Artistes art : listeArtistes) {
 				if ( art.getNumero() == artiste.getNumero()) {
-					
-					System.out.println(art.getNom() + " " + artiste.getNom());
 					art = artiste;
-					System.out.println(art.getNom());
 				}
 			}
 
 			listeArtistes = obtenirListeArtistes();
-			///////
+			
 			boolModif = true;
 			
 		} catch (SQLException sqle) {
@@ -232,7 +229,8 @@ public class GestionArtiste {
 			changement = true;
 			
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'ajout d'un artiste: Assurez vous de bien remplir les informations et l'image "  ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'ajout d'un artiste:"
+					+ " Assurez vous de bien remplir les informations et l'image "  ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return changement;

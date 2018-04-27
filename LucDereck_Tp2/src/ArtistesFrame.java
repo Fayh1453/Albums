@@ -1,19 +1,15 @@
-import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
@@ -21,18 +17,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
 import java.awt.Font;
 
 public class ArtistesFrame extends JFrame {
@@ -64,6 +53,9 @@ public class ArtistesFrame extends JFrame {
 	private Artistes artiste;
 	private GestionArtiste gestionArtiste;
 	private ModeleArtistes modeleArtistes;
+	private ArtistesFrame frame = this;
+	private MouseListener mouseConf;
+	
 	
 	
 
@@ -158,7 +150,6 @@ public class ArtistesFrame extends JFrame {
 
 					@Override
 					public void tableChanged(TableModelEvent e) {
-						// TODO Auto-generated method stub
 						switch(e.getType()) {
 						case TableModelEvent.INSERT:
 							System.out.println("Il y a eu insertion");
@@ -201,7 +192,7 @@ public class ArtistesFrame extends JFrame {
 		}
 		return panelListeAlbums;
 	}
-	private JTextField getTextField() {
+	public JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
 			textField.setBounds(95, 78, 86, 20);
@@ -209,7 +200,7 @@ public class ArtistesFrame extends JFrame {
 		}
 		return textField;
 	}
-	private JTextField getTextField_1() {
+	public JTextField getTextField_1() {
 		if (textField_1 == null) {
 			textField_1 = new JTextField();
 			textField_1.setBounds(95, 109, 86, 20);
@@ -238,7 +229,7 @@ public class ArtistesFrame extends JFrame {
 		}
 		return lblMembre;
 	}
-	private JCheckBox getCheckBox() {
+	public JCheckBox getCheckBox() {
 		if (checkBox == null) {
 			checkBox = new JCheckBox("");
 			checkBox.setBackground(Color.WHITE);
@@ -285,21 +276,10 @@ public class ArtistesFrame extends JFrame {
 							setArtistesTable(gestionArtiste.getListeArtistes());
 							
 							effacerInfos();
-						}
-						
-						
-						
+						}						
 					}
 					
-				}
-				
-				
-				
-				
-				
-				
-				
-				
+				}		
 			});
 		}
 		return button_1;
@@ -338,6 +318,7 @@ public class ArtistesFrame extends JFrame {
 				}
 				
 			});
+			
 		}
 		return button_3;
 	}
@@ -367,15 +348,21 @@ public class ArtistesFrame extends JFrame {
 		button_3.setEnabled(false);
 		button_1.setEnabled(false);
 		btnImage.setVisible(true);
+		btnConfirmer.removeMouseListener(mouseConf);
 		
-		
-		btnConfirmer.setVisible(true);
-		btnConfirmer.addMouseListener(new MouseAdapter() {
+		mouseConf = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				confirmerAjout();
+				
+				if (gestionArtiste.confirmerAjout(frame)) {
+					effacerInfos();
+				}
+					
 			}
-		});
+		};
+		btnConfirmer.addMouseListener(mouseConf);
+		
+		btnConfirmer.setVisible(true);
 	}
 	
 	private void effacerInfos() {
@@ -384,7 +371,7 @@ public class ArtistesFrame extends JFrame {
 		textField.setText("");
 		textField_1.setText("");
 		lblImageAlbum.setIcon(null);
-		lblImageAlbum.setText("Choisir une image");	
+		lblImageAlbum.setText("Image");	
 		checkBox.setSelected(false);
 		list.setVisible(false);
 		
@@ -394,80 +381,31 @@ public class ArtistesFrame extends JFrame {
 		btnConfirmer.setVisible(true);
 		textField.setEditable(false);
 		btnImage.setVisible(true);
-
 		
-		btnConfirmer.addMouseListener(new MouseAdapter() {
+		btnConfirmer.removeMouseListener(mouseConf);
+		
+		mouseConf = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				confirmerModif();
+				
+				if ( gestionArtiste.confirmerModif(frame)) {
+					effacerInfos();
+				};
 			}
-		});
+		};
+		btnConfirmer.addMouseListener(mouseConf);
+		
+		btnConfirmer.setVisible(true);		
 	}
-	
-	private void confirmerAjout() {
-		///////////////////
-		try {
-			int numero = Integer.parseInt(textField.getText());
-			
-			String nom = textField_1.getText();
-			
-			boolean membre = false;
-			
-			if ( checkBox.isSelected()) {
-				membre = true;
-			}
-			
-			String iconfilename = lblImageAlbum.getIcon().toString();
-			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
-			
-			artiste = new Artistes(numero,nom,membre,fileName);
-			
-			gestionArtiste.ajouterArtistesBD(artiste);
 
-			
-			setArtistesTable(gestionArtiste.getListeArtistes());
-
-
-			
-			effacerInfos();
-			
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'ajout d'un artiste: Assurez vous de bien remplir les informations et l'image "  ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	
-	private void confirmerModif() {
-		
-		int numero = Integer.parseInt(textField.getText());
-		
-		String nom = textField_1.getText();
-		
-		boolean membre = false;
-		
-		if ( checkBox.isSelected()) {
-			membre = true;
-		}
-		
-		String iconfilename = lblImageAlbum.getIcon().toString();
-		String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
-		
-		try {
-			artiste = new Artistes(numero,nom,membre,fileName);
-			
-			gestionArtiste.modifierArtistesBD(artiste);
-			setArtistesTable(gestionArtiste.getListeArtistes());
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un artiste : Assurez vous de bien remplir les informations et l'image" ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
-		}
-
-
-		
-	}
 	
 	private void ajouterImage() {
-		//////////////////////
+		try {
 		String chemin = GestionFichier.Ouvrir(this);
 		lblImageAlbum.setIcon(new ImageIcon(ArtistesFrame.class.getResource("/Images/" + chemin)));
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors du choix de l'image. Assurez vous de choisir une image existante dans un bon format"  ,"Choix de l'image", JOptionPane.ERROR_MESSAGE);
+		}
 
 		
 	}
@@ -488,7 +426,7 @@ public class ArtistesFrame extends JFrame {
 		}
 		return panelButtons;
 	}
-	private JLabel getLblImageAlbum() {
+	public JLabel getLblImageAlbum() {
 		if (lblImageAlbum == null) {
 			lblImageAlbum = new JLabel("");
 			lblImageAlbum.setFont(new Font("Tahoma", Font.PLAIN, 9));
