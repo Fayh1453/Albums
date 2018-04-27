@@ -412,6 +412,8 @@ public class AlbumsFrame extends JFrame {
 	
 	private void confirmerModif() {
 		
+		String fileName;
+		try {
 		int numero = Integer.parseInt(textField.getText());			
 		String titre = textField_1.getText();
 		int annee = Integer.parseInt(textField_2.getText());
@@ -420,8 +422,8 @@ public class AlbumsFrame extends JFrame {
 		int numeroArtiste = Integer.parseInt(textField_5.getText());
 		String genre = textField_6.getText();
 
-		String fileName;
-		try {
+		
+		
 		String iconfilename = lblNewLabel.getIcon().toString();
 		fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
 
@@ -523,6 +525,12 @@ public class AlbumsFrame extends JFrame {
 		if (btnImage == null) {
 			btnImage = new JButton("Image");
 			btnImage.setBounds(247, 167, 93, 23);
+			btnImage.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					ajouterImage();
+				}
+			});
 		}
 		return btnImage;
 	}
@@ -530,13 +538,6 @@ public class AlbumsFrame extends JFrame {
 		if (btnConfirmer == null) {
 			btnConfirmer = new JButton("Confirmer");
 			btnConfirmer.setBounds(247, 197, 93, 23);
-			
-			btnImage.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					ajouterImage();
-				}
-			});
 			
 		}
 		return btnConfirmer;

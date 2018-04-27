@@ -1,8 +1,11 @@
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
@@ -42,7 +45,7 @@ public class GestionArtiste {
 			
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return liste;
@@ -167,7 +170,7 @@ public class GestionArtiste {
 			
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 	
 		return liste;
@@ -195,11 +198,76 @@ public class GestionArtiste {
 			
 			
 		}catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontrr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 : " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return liste;
 	
+	}
+	
+	public boolean confirmerAjout(artistesFrame frame) {
+		boolean changement = false;
+		
+		try {
+			int numero = Integer.parseInt(frame.getTextField().getText());
+			
+			String nom = frame.getTextField_1().getText();
+			
+			boolean membre = false;
+			
+			if ( frame.getCheckBox().isSelected()) {
+				membre = true;
+			}
+			
+			String iconfilename = frame.getLblImageAlbum().getIcon().toString();
+			String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+			
+			Artistes artiste = new Artistes(numero,nom,membre,fileName);
+			
+			ajouterArtistesBD(artiste);
+
+			
+			frame.setArtistesTable(getListeArtistes());
+			
+			changement = true;
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de l'ajout d'un artiste: Assurez vous de bien remplir les informations et l'image "  ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return changement;
+	}
+	
+	
+	public boolean confirmerModif(artistesFrame frame) {
+		boolean changement = false;
+		try {
+		int numero = Integer.parseInt(frame.getTextField().getText());
+		
+		String nom = frame.getTextField_1().getText();
+		
+		boolean membre = false;
+		
+		if ( frame.getCheckBox().isSelected()) {
+			membre = true;
+		}
+		
+		String iconfilename = frame.getLblImageAlbum().getIcon().toString();
+		String fileName = iconfilename.substring(iconfilename.lastIndexOf("/"  ) + 1);
+		
+		
+			Artistes artiste = new Artistes(numero,nom,membre,fileName);
+			
+			modifierArtistesBD(artiste);
+			frame.setArtistesTable(getListeArtistes());
+			
+			changement = true;
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification d'un artiste : Assurez vous de bien remplir les informations et l'image" ,"Ajouté un artiste", JOptionPane.ERROR_MESSAGE);
+		}
+
+
+		return changement;
 	}
 
 

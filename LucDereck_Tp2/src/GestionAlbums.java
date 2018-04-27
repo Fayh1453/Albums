@@ -126,7 +126,7 @@ public class GestionAlbums {
 			boolModif = true;
 			
 		} catch (SQLException sqle) {
-			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification de l'album: " + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Problème rencontr\u00E9 lors de la modification de l'album: HAHA" + sqle.getMessage() ,"Résultat", JOptionPane.ERROR_MESSAGE);
 		}
 
 		
