@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 19 Avril 2018 à 19:56
+-- Généré le :  Ven 27 Avril 2018 à 21:02
 -- Version du serveur :  5.6.37
 -- Version de PHP :  5.6.31
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Album` (
   `maison` varchar(255) COLLATE utf8_bin NOT NULL,
   `image` varchar(255) COLLATE utf8_bin NOT NULL,
   `numeroArtiste` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `Album`
@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `Album` (
 
 INSERT INTO `Album` (`numero`, `titre`, `prix`, `genre`, `annee`, `maison`, `image`, `numeroArtiste`) VALUES
 (2, 'All The Way... A Decade of Song', 19.99, 'pop', 1999, 'Columbia', 'allTheWay.png', 1),
-(3, 'Comment le dire', 7.99, 'Country', 2007, 'Disque GPN', 'commentLeDire.png', 2),
+(3, 'Comment le dire', 7.98, 'Country', 2007, 'Disque GPN', 'commentLeDire.png', 3),
 (4, 'Too Much Too Late', 12.99, 'Disco', 1986, 'UniDisc', 'tooMuchTooLate.png', 3),
-(5, 'Coeur de pirate', 23.99, 'Pop', 2008, 'GrosseBoite', 'coeurPirateAlbum.png', 4),
-(6, 'Moody Blue', 39.99, 'Rock ''n'' roll', 1977, 'RCA Records', 'moodyBlue.png', 5);
+(5, 'Coeur de pirate', 23.99, 'Pop', 2008, 'GrosseBoite', 'coeurDePirateAlbum.png', 4),
+(6, 'Moody Blue', 39.99, 'Rock ''n'' roll', 1977, 'RCA Records', 'moodyBlues.png', 5);
 
 -- --------------------------------------------------------
 
@@ -59,18 +59,19 @@ CREATE TABLE IF NOT EXISTS `Artistes` (
   `nom` varchar(255) COLLATE utf8_bin NOT NULL,
   `Membre` tinyint(1) NOT NULL,
   `photo` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12312322 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Contenu de la table `Artistes`
 --
 
 INSERT INTO `Artistes` (`numero`, `nom`, `Membre`, `photo`) VALUES
-(1, 'Céline Dion', 1, 'celineDion.png'),
-(2, 'Patrick Norman', 0, 'patickNorman.png'),
-(3, 'Martin Stevens', 0, 'martinStevens.png'),
-(4, 'Coeur de pirate', 1, 'coeurDePirate.png'),
-(5, 'Elvis Presley', 0, 'elvisPresley.png');
+(1, 'Céline Dion', 1, 'celineDion.jpg'),
+(2, 'Patrick Normand', 0, 'patrickNorman.jpg'),
+(3, 'Martin Stevens', 1, 'martinStevens.jpg'),
+(4, 'Coeur de pirate', 1, 'coeurDePirate.jpg'),
+(5, 'HEIHE', 1, 'allTheWay.png'),
+(6, 'dede', 1, 'allTheWay.png');
 
 --
 -- Index pour les tables exportées
@@ -97,12 +98,12 @@ ALTER TABLE `Artistes`
 -- AUTO_INCREMENT pour la table `Album`
 --
 ALTER TABLE `Album`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `Artistes`
 --
 ALTER TABLE `Artistes`
-  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `numero` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12312322;
 --
 -- Contraintes pour les tables exportées
 --
